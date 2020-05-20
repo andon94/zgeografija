@@ -16,7 +16,7 @@ usernameForm.addEventListener('submit', e => {
 
 let name = localStorage.getItem("usernameLS");
 
-if (name != null) {
+if (name != null && name != '') {
     console.log('continue')
     bazaLink.classList.add('show')
     bazaLink.setAttribute("href", "./datainput.html");
