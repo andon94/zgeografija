@@ -59,7 +59,11 @@ drop.addEventListener('click', () => {
         menu.classList.add('none');
     }
 
-    up.classList.add('none')
+    if (up.classList.contains('none')) {
+        up.classList.remove('none')
+    } else {
+        up.classList.add('none')
+    }
 
 })
 
