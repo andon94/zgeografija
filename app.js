@@ -71,16 +71,15 @@ let collection = db.collection('pojmovi')
 
 class Pojam {
 
-    constructor(ka, ko, p) {
+    constructor(ka, p) {
         this.kategorija = ka;
-        this.korisnik = ko;
         this.pojam = p;
         this.pojmovi = db.collection('pojmovi')
     }
 
 
     // model za upis pojmova u bazu
-    async dodajPojam(korisnik, kategorija, pojam) {
+    async dodajPojam(kategorija, pojam) {
 
         let date = new Date();
         let name = localStorage.getItem("usernameLS");
@@ -115,7 +114,7 @@ datainput.addEventListener('submit', e => {
         }
     }
 
-    pojam01.dodajPojam('andon', inputKategorija, inputPojam)
+    pojam01.dodajPojam(inputKategorija, inputPojam)
         .then(() => {
             console.log("pojam uspesno dodat")
             pojam.innerHTML = 'Dodat';
