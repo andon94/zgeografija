@@ -89,13 +89,24 @@ desc.addEventListener('click', () => {
 
 
 
-
-
-
 // baza 
 
 let collection = db.collection('pojmovi')
+
+
+
+
+
+
+
+
+
+
+
 let name = localStorage.getItem("usernameLS");
+
+
+
 
 class Pojam {
 
@@ -104,7 +115,6 @@ class Pojam {
         this.pojam = p;
         this.pojmovi = db.collection('pojmovi')
     }
-
 
     // model za upis pojmova u bazu
     async dodajPojam(kategorija, pojam) {
@@ -121,18 +131,11 @@ class Pojam {
         let response = await this.pojmovi.add(element);
         return response;
     }
-
 }
 
 
 
-// let stringFormat = (string) => {
-//     // string = "sddDsdfas D dd d d dd ";
-//     newString = string.split(" ").join("").toLowerCase();
-//     lastString = newString.charAt(0).toUpperCase() + newString.slice(1)
-//     console.log(lastString)
 
-// }
 
 
 // upis podataka u bazu klikom na button
@@ -160,11 +163,16 @@ datainput.addEventListener('submit', e => {
         // ukoliko pojam odgovara regexu nastavi
         if (formatedPojam.match(regex) && inputKategorija != null && formatedPojam != '') {
 
+
+
+
             pojam01.dodajPojam(inputKategorija, formatedPojam)
                 .then(() => {
                     console.log("pojam uspesno dodat")
-                    pojam.innerHTML = 'Dodat';
+                    pojam.innerHTML = formatedPojam;
+                    pojaminput.setAttribute('placeholder', 'Dodato')
                     // kategorija.innerHTML = null;
+                    pojaminput.value = ''
                 })
                 .catch(() => {
                     console.log("pojam nije dodat")
@@ -176,7 +184,10 @@ datainput.addEventListener('submit', e => {
         } else {
             error.innerHTML = 'Izaberite jednu od kategorija i unesite odgovarajuci pojam. <br>Koristite iskljucivo tekstualne karaktere.'
             pojam.innerHTML = null;
-            kategorija.innerHTML = null;
+            // kategorija.innerHTML = null;
+            pojaminput.setAttribute('placeholder', 'Ovde unesi Pojam')
+            pojaminput.value = ''
+
         }
 
     } else {
@@ -190,3 +201,6 @@ datainput.addEventListener('submit', e => {
 let cleanError = () => {
     error.innerHTML = '';
 }
+
+
+
