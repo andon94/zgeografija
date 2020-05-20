@@ -8,6 +8,7 @@ body{
     background: url(./images/canada.png) 50% 40% no-repeat, url(./images/bulgaria.png) 53% 33% no-repeat;
     background-size: 250px;
     /* background-color: whitesmoke; */
+    height: 100vh;
 }
 
 h1{
@@ -51,19 +52,26 @@ form{
     grid-template-rows: 50% 50%;
     padding-top: 7vh;
     text-align: center;
-    height: 95vh;
+    height: 70vh;
+}
+
+.error{
+    text-align: center;
+    padding: 3rem;
+    color: red;
+    letter-spacing: 1px;
+    width: 40%;
+    margin: -15vh auto 0 auto;
 }
 
 
 .pojam label, .drop{
     font-size: 1.5rem;
     font-family: 'Black Ops One', cursive;
-    /* font-weight: bold; */
-    color: rgba(207, 0, 15, 1);
+    color: #444444;
 }
 
 .kategorija p:hover{
-    color: rgba(31, 58, 147, 1);
     cursor: pointer;
 }
 
@@ -128,8 +136,9 @@ button {
 
     padding: 1rem 2rem;
     border: none;
-    margin: -2rem auto 0 auto;
+    margin: -1rem auto 0 auto;
     border-radius: 3px;
+    /* margin: auto; */
 }
 
 button:hover {
@@ -141,4 +150,8 @@ button:hover {
 footer{
     text-align: center;
     background-color: aliceblue;
+    position: fixed;
+    bottom: 0;
+    display: block;
+    width: 100%;
 }

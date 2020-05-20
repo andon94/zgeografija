@@ -20,7 +20,7 @@
                 <p class="drop">Kategorija</p>
                 <div class="kat"></div>
 
-                <p id="desc">Klikni iznad.<br>Izaberi jednu od kategorija</span> iz liste
+                <p id="desc">Klikni ovde.<br>Izaberi jednu od kategorija</span> iz liste
                     i<br>unesi
                     adekvatan
                     pojam.</p>
@@ -67,10 +67,15 @@
             <div class="pojam">
                 <label for="">Pojam</label>
                 <div class="po"></div>
-                <input type="text" class="pojaminput" placeholder="Ovde unesi Pojam" oninput="writePojam()">
+                <input type="text" class="pojaminput" placeholder="Ovde unesi Pojam"
+                    oninput="writePojam(), cleanError()">
             </div>
             <button type="submit">POŠALJI</button>
         </form>
+
+        <div class="error">
+            <p></p>
+        </div>
 
     </div>
 

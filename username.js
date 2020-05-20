@@ -4,6 +4,8 @@ const usernameInput = document.querySelector('.usernameinput')
 const bazaLink = document.querySelector('.navlink')
 const kvizLink = document.querySelector('.quizlink')
 
+const button = document.querySelector('.loginbutton')
+
 usernameForm.addEventListener('submit', e => {
     // e.preventDefault();
     let username = usernameInput.value;
@@ -22,6 +24,9 @@ if (name != null) {
     kvizLink.classList.add('show')
     kvizLink.setAttribute("href", "./kviz.html");
 
+    button.innerHTML = 'HVALA'
+
 } else {
     console.log('stop')
 }
+
