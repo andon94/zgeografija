@@ -14,6 +14,8 @@ const menu = document.querySelector('.menu')
 
 const error = document.querySelector('.error')
 
+const up = document.querySelector('#up')
+
 
 
 
@@ -57,6 +59,8 @@ drop.addEventListener('click', () => {
         menu.classList.add('none');
     }
 
+    up.classList.add('none')
+
 })
 
 desc.addEventListener('click', () => {
@@ -72,6 +76,8 @@ desc.addEventListener('click', () => {
     } else {
         menu.classList.add('none');
     }
+    up.classList.add('none')
+
 })
 
 
@@ -154,7 +160,7 @@ datainput.addEventListener('submit', e => {
                 .then(() => {
                     console.log("pojam uspesno dodat")
                     pojam.innerHTML = 'Dodat';
-                    kategorija.innerHTML = null;
+                    // kategorija.innerHTML = null;
                 })
                 .catch(() => {
                     console.log("pojam nije dodat")

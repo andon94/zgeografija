@@ -24,7 +24,8 @@ if (name != null && name != '') {
     kvizLink.classList.add('show')
     kvizLink.setAttribute("href", "./kviz.html");
 
-    button.innerHTML = 'HVALA'
+    button.innerHTML = 'Promeni Korisnicko Ime'
+    usernameInput.setAttribute('placeholder', `Ime: ${name}`)
 
 } else {
     console.log('stop')

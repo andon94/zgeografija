@@ -17,6 +17,7 @@
 
         <form id="datainput">
             <div class="kategorija">
+                <img src="./images/1.png" class="numbers" alt="1">
                 <p class="drop">Kategorija</p>
                 <div class="kat"></div>
 
@@ -24,6 +25,7 @@
                     i<br>unesi
                     adekvatan
                     pojam.</p>
+                <img src="./images/up.png" alt="up" class="arrow" id="up">
                 <div class="menu none">
                     <div>
                         <label>DRŽAVA</label>
@@ -65,12 +67,17 @@
             </div>
 
             <div class="pojam">
+                <img src="./images/2.png" class="numbers" id="dva" alt="2">
                 <label for="">Pojam</label>
                 <div class="po"></div>
                 <input type="text" class="pojaminput" placeholder="Ovde unesi Pojam"
-                    oninput="writePojam(), cleanError()">
+                    oninput="writePojam(), cleanError()" onfocus="this.value=''">
             </div>
-            <button type="submit">POŠALJI</button>
+
+            <div>
+                <!-- <img src="./images/3.png" class="numbers" id="tri" alt="3"> -->
+                <button type="submit">POŠALJI</button>
+            </div>
         </form>
 
         <div class="error">

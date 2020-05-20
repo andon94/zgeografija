@@ -7,7 +7,6 @@
 body{
     background: url(./images/canada.png) 50% 40% no-repeat, url(./images/bulgaria.png) 53% 33% no-repeat;
     background-size: 250px;
-    /* background-color: whitesmoke; */
     height: 100vh;
 }
 
@@ -69,6 +68,9 @@ form{
     font-size: 1.5rem;
     font-family: 'Black Ops One', cursive;
     color: #444444;
+    display: inline;
+    /* margin: auto; */
+    margin-right: 2.5rem;
 }
 
 .kategorija p:hover{
@@ -81,7 +83,7 @@ form{
 }
 
 .pojam label {
-    display: block;
+    display: inline;
 }
 
 .pojam input{
@@ -92,10 +94,24 @@ form{
     color: #333333;
 }
 
+.numbers{
+    height: 35px;
+    display: inline;
+    margin-right: 0.8rem;
+    /* margin-top: 3; */
+    position: relative;
+    top: 0.5rem;
+}
+
+
+.menu{
+    margin-top: -3.5rem;
+}
+
 
 .menu div {
     display: grid;
-    grid-template-columns: 70% 10%;
+    grid-template-columns: 70% 30%;
     text-align: center;
     padding: 0.5rem 0;
     width: 30vw;
@@ -103,6 +119,26 @@ form{
     letter-spacing: 2px;
     font-weight: bold;
 }
+
+.arrow{
+    height: 6rem;
+    margin-top: 3rem;
+
+    position: relative;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: 100000;
+}
+
+
+@keyframes example {
+    0%   {top:0px;}
+    /* 25%  {top:2rem;} */
+    50%  {top:5rem;}
+    /* 75%  {top:2rem;} */
+    100% {top:0px;}
+  }
+
 
 .inputdisplay{
     text-align: center;
@@ -125,6 +161,7 @@ form{
     min-height: 3rem;
 }
 
+
 button {
     width: fit-content;
     height: fit-content;
@@ -136,9 +173,8 @@ button {
 
     padding: 1rem 2rem;
     border: none;
-    margin: -1rem auto 0 auto;
+    margin: 1rem auto 0 auto;
     border-radius: 3px;
-    /* margin: auto; */
 }
 
 button:hover {
