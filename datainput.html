@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./datainputStyle.css">
+    <title>Baza Pojmova</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1><a href="./index.html">ZANIMLJIVA GEOGRAFIJA</a></h1>
+
+        <form id="datainput">
+            <div class="kategorija">
+                <p class="drop">Kategorija</p>
+                <div class="kat"></div>
+
+                <p id="desc">Klikni iznad.<br>Izaberi jednu od kategorija</span> iz liste
+                    i<br>unesi
+                    adekvatan
+                    pojam.</p>
+                <div class="menu none">
+                    <div>
+                        <label>DRŽAVA</label>
+                        <input type="radio" id="drzava" value="drzava" name="kategorija" class="radio">
+                    </div>
+
+                    <div>
+                        <label>GRAD</label>
+                        <input type="radio" id="grad" value="grad" name="kategorija" class="radio">
+                    </div>
+
+                    <div>
+                        <label>REKA</label>
+                        <input type="radio" id="reka" value="reka" name="kategorija" class="radio">
+                    </div>
+
+                    <div>
+                        <label>PLANINA</label>
+                        <input type="radio" id="planina" value="planina" name="kategorija" class="radio">
+                    </div>
+
+                    <div>
+                        <label>ŽIVOTINJA</label>
+                        <input type="radio" id="zivotinja" value="zivotinja" name="kategorija" class="radio">
+                    </div>
+
+                    <div>
+                        <label>BILJKA</label>
+                        <input type="radio" id="biljka" value="biljka" name="kategorija" class="radio">
+                    </div>
+
+                    <div>
+                        <label>PREDMET</label>
+                        <input type="radio" id="predmet" value="predmet" name="kategorija" class="radio">
+                    </div>
+
+                    <!-- FOOTER NE VALJA         -->
+                </div>
+            </div>
+
+            <div class="pojam">
+                <label for="">Pojam</label>
+                <div class="po"></div>
+                <input type="text" class="pojaminput" placeholder="Ovde unesi Pojam" oninput="writePojam()">
+            </div>
+            <button type="submit">POŠALJI</button>
+        </form>
+
+    </div>
+
+    <footer>Zanimljiva Geografija - Bootcamp Projekat 2020</footer>
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBLKZBbApvlDiKxsiiWcXUVtIO8jIxKFUY",
+            authDomain: "zgeografija-906fc.firebaseapp.com",
+            databaseURL: "https://zgeografija-906fc.firebaseio.com",
+            projectId: "zgeografija-906fc",
+            storageBucket: "zgeografija-906fc.appspot.com",
+            messagingSenderId: "398181599037",
+            appId: "1:398181599037:web:1b46b4de7afe57560be754"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+    </script>
+    <script type="text/javascript" src="app.js" charset="utf-8"></script>
+
+</body>
+
+
+</html>

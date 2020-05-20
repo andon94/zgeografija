@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;    
+}
+
+body{
+    background: url(./images/canada.png) 50% 40% no-repeat, url(./images/bulgaria.png) 53% 33% no-repeat;
+    background-size: 250px;
+    background-color: whitesmoke;
+}
+
+h1{
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    letter-spacing: 4px;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+h1 a{
+    text-decoration: none;
+    color: #333333;
+    font-family: 'Black Ops One', cursive;
+}
+
+#desc {
+    text-align: center;
+    font-size: 1rem;
+    color: black;
+    line-height: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    width: fit-content;
+    margin: auto;
+}
+
+
+.none{
+    display: none;
+}
+
+:placeholder-shown{
+    color: blue;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    padding-top: 7vh;
+    text-align: center;
+    height: 95vh;
+}
+
+
+.pojam label, .drop{
+    font-size: 1.5rem;
+    font-family: 'Black Ops One', cursive;
+    /* font-weight: bold; */
+    color: rgba(207, 0, 15, 1);
+}
+
+.kategorija p:hover{
+    color: rgba(31, 58, 147, 1);
+    cursor: pointer;
+}
+
+.kategorija {
+    grid-row-start: 1;
+    grid-row-end: span 2;
+}
+
+.pojam label {
+    display: block;
+}
+
+.pojam input{
+    font-size: 1.4rem;
+    padding: 1.5rem;
+    text-align: center;
+    /* border: none; */
+    color: #333333;
+}
+
+
+.menu div {
+    display: grid;
+    grid-template-columns: 70% 10%;
+    text-align: center;
+    padding: 0.5rem 0;
+    width: 30vw;
+    margin: auto;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.inputdisplay{
+    text-align: center;
+    padding: 1rem;
+    font-size: 7rem;
+    font-weight: bold;
+    color: #666666;
+    width: 90%;
+    margin: auto;
+}
+
+
+.kat, .po {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 2rem;
+    color: rgba(4, 147, 114, 1);
+
+    min-height: 3rem;
+}
+
+button {
+    width: fit-content;
+    height: fit-content;
+
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: teal;
+
+    padding: 1rem 2rem;
+    border: none;
+    margin: -2rem auto 0 auto;
+    border-radius: 3px;
+}
+
+button:hover {
+    background: rgb(1, 110, 110);
+}
+
+
+
+footer{
+    text-align: center;
+    background-color: aliceblue;
+}
