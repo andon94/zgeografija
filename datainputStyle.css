@@ -7,7 +7,7 @@
 body{
     background: url(./images/canada.png) 50% 40% no-repeat, url(./images/bulgaria.png) 53% 33% no-repeat;
     background-size: 250px;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
 }
 
 h1{
