@@ -19,12 +19,15 @@ const up = document.querySelector('#up')
 const imgtext = document.querySelector('.imgtext')
 const lista = document.querySelector('.lista')
 
+const usrnm = document.querySelector('.usrnm')
+
 
 const one = document.querySelector('#one')
 const two = document.querySelector('#two')
 const three = document.querySelector('#three')
 const four = document.querySelector('#four')
 const five = document.querySelector('#five')
+
 
 
 
@@ -143,6 +146,7 @@ collection
 
 
 let name = localStorage.getItem("usernameLS");
+usrnm.innerHTML = `Vase korisnicko ime je: ${name}`
 
 class Pojam {
 
