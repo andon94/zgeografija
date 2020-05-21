@@ -5,7 +5,8 @@
 }
 
 body{
-    background: url(../images/canada.png) 50% 40% no-repeat, url(../images/bulgaria.png) 53% 33% no-repeat;
+    /* background: url(../images/canada.png) 50% 40% no-repeat, url(../images/bulgaria.png) 53% 33% no-repeat; */
+    background: url(../images/slav.png) no-repeat 50% 40%;
     background-size: 250px;
     height: 100vh;
 }
