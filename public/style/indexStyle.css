@@ -100,3 +100,10 @@ a{
     font-size: 0.7rem;
     padding: 1rem 0;
 } */
+
+
+@media only screen and (max-width: 400px) {
+    body {
+      background-color: red;
+    }
+  }

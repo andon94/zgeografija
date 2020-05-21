@@ -20,6 +20,13 @@ const imgtext = document.querySelector('.imgtext')
 const lista = document.querySelector('.lista')
 
 
+const one = document.querySelector('#one')
+const two = document.querySelector('#two')
+const three = document.querySelector('#three')
+const four = document.querySelector('#four')
+const five = document.querySelector('#five')
+
+
 
 
 // sinhrono ispisivanje inputa
@@ -77,6 +84,64 @@ imgtext.addEventListener('click', () => {
 
 // baza 
 let collection = db.collection('pojmovi');
+
+collection
+    .get()
+    .then(function (querySnapshot) {
+        let niz = []
+        querySnapshot.forEach(function (doc) {
+
+            let usr = doc.data()
+
+            if (usr) {
+                niz.push(
+                    usr.korisnik,
+                )
+            }
+
+        });
+
+        let sort = {};
+        niz.forEach(function (x) { sort[x] = (sort[x] || 0) + 1; });
+        console.log(sort)
+
+        // privremeno resenje
+
+        let first = Object.keys(sort)[0];
+        let second = Object.keys(sort)[1];
+        let third = Object.keys(sort)[2];
+        let forth = Object.keys(sort)[3];
+        let fifth = Object.keys(sort)[4];
+
+        let name1 = sort[first]
+        let name2 = sort[second]
+        let name3 = sort[third]
+        let name4 = sort[forth]
+        let name5 = sort[fifth]
+
+        one.innerHTML = `${name1} ${first}`
+        two.innerHTML = `${name2} ${second}`
+        three.innerHTML = `${name3} ${third}`
+        four.innerHTML = `${name4} ${forth}`
+        five.innerHTML = `${name5} ${fifth}`
+
+
+
+
+
+
+
+
+
+
+
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
 let name = localStorage.getItem("usernameLS");
 
 class Pojam {

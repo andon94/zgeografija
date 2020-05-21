@@ -18,11 +18,13 @@
 .img-div img{
     height: 200px;
     margin-top: -3rem;
+    transition: all .2s ease-in-out;
 }
 
 .img-div img:hover{
     transform: scale(1.1, 1.1);
 }
+
 
 .imgtext{
     font-size: 1.1rem;
@@ -45,13 +47,13 @@
 
 .lista li{
     padding: 0.35rem 1.5rem;
-    /* font-size: 1.1rem; */
-    width: fit-content;
-    margin: auto;
     font-weight: bold;
+    margin: auto;
     color: #333333;
     letter-spacing: 3px;
     text-transform: uppercase;
+    list-style-type: none;
+    /* word-spacing: 2rem; */
 }
 
 
@@ -241,3 +243,46 @@ footer{
 } */
 
 
+
+
+@media only screen and (max-width: 800px) {
+
+
+    .arrow{
+        display: none;
+    }
+
+    .numbers{
+        display: none;
+    }
+
+    form{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 20% 20%;
+        padding-top: 0;
+        text-align: center;
+    }
+
+    #desc{
+        display: none;
+    }
+
+    .menu{
+        display: block;
+    }
+
+    .pojam label, .drop {
+        margin-right: 0;
+    }
+
+
+    .lista{
+        display: block;
+        margin-bottom: 2rem;
+    }
+    
+    .error{
+        margin: 3rem auto 0 auto;
+    }
+  }
