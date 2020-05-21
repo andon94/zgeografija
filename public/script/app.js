@@ -25,6 +25,10 @@ const writePojam = () => {
     pojam.innerHTML = pojaminput.value
 }
 
+let cleanError = () => {
+    error.innerHTML = '';
+}
+
 for (let i = 0; i < radioinput.length; i++) {
 
     radioinput[i].onclick = check = () => {
@@ -38,51 +42,26 @@ for (let i = 0; i < radioinput.length; i++) {
 }
 
 
+
 // dropdown funkcionalnost liste kategorija
+
+let show = () => {
+    desc.classList.toggle('none')
+    menu.classList.toggle('none');
+    up.classList.toggle('none')
+}
 
 drop.addEventListener('click', () => {
 
     pojam.innerHTML = null;
     kategorija.innerHTML = null;
-
-
-    if (desc.classList.contains('none')) {
-        desc.classList.remove('none');
-    } else {
-        desc.classList.add('none');
-    }
-
-
-    if (menu.classList.contains('none')) {
-        menu.classList.remove('none');
-    } else {
-        menu.classList.add('none');
-    }
-
-    if (up.classList.contains('none')) {
-        up.classList.remove('none')
-    } else {
-        up.classList.add('none')
-    }
-
+    show()
 })
 
 desc.addEventListener('click', () => {
-    if (desc.classList.contains('none')) {
-        desc.classList.remove('none');
-    } else {
-        desc.classList.add('none');
-    }
-
-
-    if (menu.classList.contains('none')) {
-        menu.classList.remove('none');
-    } else {
-        menu.classList.add('none');
-    }
-    up.classList.add('none')
-
+    show()
 })
+
 
 
 
@@ -90,23 +69,8 @@ desc.addEventListener('click', () => {
 
 
 // baza 
-
-let collection = db.collection('pojmovi')
-
-
-
-
-
-
-
-
-
-
-
+let collection = db.collection('pojmovi');
 let name = localStorage.getItem("usernameLS");
-
-
-
 
 class Pojam {
 
@@ -118,6 +82,7 @@ class Pojam {
 
     // model za upis pojmova u bazu
     async dodajPojam(kategorija, pojam) {
+
 
         let date = new Date();
         let element = {
@@ -140,6 +105,7 @@ class Pojam {
 
 // upis podataka u bazu klikom na button
 let pojam01 = new Pojam();
+
 datainput.addEventListener('submit', e => {
     e.preventDefault();
     // formatiranje stringa
@@ -148,7 +114,7 @@ datainput.addEventListener('submit', e => {
     formatedPojam = formatPojam.charAt(0).toUpperCase() + formatPojam.slice(1)
     console.log(formatedPojam)
 
-    inputKategorija = null;
+    let inputKategorija = null;
 
     for (let i = 0; i < radioinput.length; i++) {
         if (radioinput[i].checked) {
@@ -160,34 +126,47 @@ datainput.addEventListener('submit', e => {
     if (name != null) {
 
         let regex = /^[a-zA-Z]*$/
-        // ukoliko pojam odgovara regexu nastavi
+        // ukoliko pojam odgovara regexu, kategorija nije prazna i pojam nije prazan, nastavi
         if (formatedPojam.match(regex) && inputKategorija != null && formatedPojam != '') {
 
+            pojam01.pojmovi
+                .where('kategorija', '==', inputKategorija)
+                .where('pojam', '==', formatedPojam)
+                .get()
+                .then(snapshot => {
+                    // console.log(snapshot.docs.length)
+                    if (snapshot.docs.length == 0) {
+
+                        pojam01.dodajPojam(inputKategorija, formatedPojam)
+                            .then(() => {
+                                console.log("Pojam uspesno dodat")
+                                pojam.innerHTML = formatedPojam;
+                                pojaminput.setAttribute('placeholder', 'Dodato')
+                                pojaminput.value = ''
+                            })
+                            .catch(() => {
+                                console.log("pojam nije dodat")
+                                error.innerHTML = 'Pojam Nije Dodat'
+                                pojam.innerHTML = null;
+                                kategorija.innerHTML = null;
+                            })
+                    } else {
+                        console.log('Pojam je duplikat i nije dodat u bazu')
+                        error.innerHTML = 'Pojam je vec unet.'
+                        pojaminput.setAttribute('placeholder', 'Ovde unesi Pojam')
+                        pojaminput.value = ''
 
 
-
-            pojam01.dodajPojam(inputKategorija, formatedPojam)
-                .then(() => {
-                    console.log("pojam uspesno dodat")
-                    pojam.innerHTML = formatedPojam;
-                    pojaminput.setAttribute('placeholder', 'Dodato')
-                    // kategorija.innerHTML = null;
-                    pojaminput.value = ''
+                    }
                 })
-                .catch(() => {
-                    console.log("pojam nije dodat")
-                    error.innerHTML = 'Pojam Nije Dodat'
-                    pojam.innerHTML = null;
-                    kategorija.innerHTML = null;
-                })
+
+
 
         } else {
             error.innerHTML = 'Izaberite jednu od kategorija i unesite odgovarajuci pojam. <br>Koristite iskljucivo tekstualne karaktere.'
             pojam.innerHTML = null;
-            // kategorija.innerHTML = null;
             pojaminput.setAttribute('placeholder', 'Ovde unesi Pojam')
             pojaminput.value = ''
-
         }
 
     } else {
@@ -198,9 +177,7 @@ datainput.addEventListener('submit', e => {
 })
 
 
-let cleanError = () => {
-    error.innerHTML = '';
-}
+
 
 
 

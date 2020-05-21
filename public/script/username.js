@@ -7,11 +7,11 @@ const kvizLink = document.querySelector('.quizlink')
 const button = document.querySelector('.loginbutton')
 
 usernameForm.addEventListener('submit', e => {
-    // e.preventDefault();
     let username = usernameInput.value;
     console.log(username)
     localStorage.setItem('usernameLS', username)
 })
+
 // localStorage.clear()
 
 let name = localStorage.getItem("usernameLS");
@@ -26,7 +26,6 @@ if (name != null && name != '') {
 
     button.innerHTML = 'Promeni Korisnicko Ime'
     usernameInput.setAttribute('placeholder', `Ime: ${name}`)
-
 } else {
     console.log('stop')
 }

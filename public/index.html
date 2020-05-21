@@ -1,93 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Firebase Hosting</title>
-
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/7.14.4/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <!-- <script defer src="/__/firebase/7.14.4/firebase-auth.js"></script> -->
-  <script defer src="/__/firebase/7.14.4/firebase-database.js"></script>
-  <!-- <script defer src="/__/firebase/7.14.4/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/7.14.4/firebase-storage.js"></script> -->
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/indexStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>Zanimljiva Geografija</title>
 </head>
 
 <body>
-
-  <div class="container">
-    <h1><a href="./index.html">ZANIMLJIVA GEOGRAFIJA</a></h1>
-    <div class="login">
-      <img src="./images/serbia.png" alt="serbiaball" class="serbiaball">
-      <div>
-        <p class="quiz">Unesi korisničko ime i pristupi <br> najboljem <a href="./index.html" class="quizlink">KVIZU</a>
-          ikada!</p>
-        <br>
-        <p class="base">Ili budi geograf i <br><a href="./index.html" class="navlink">obogati
-            bazu</a> pojmova</p>
-      </div>
-      <form class="usernamebox">
-        <input type="text" class="usernameinput" placeholder="Vaše korisničko ime">
-        <button class="loginbutton" type="submit">
-          POŠALJI
-        </button>
-      </form>
+    <div class="container">
+        <h1><a href="./index.html">ZANIMLJIVA GEOGRAFIJA</a></h1>
+        <div class="login">
+            <img src="./images/serbia.png" alt="serbiaball" class="serbiaball">
+            <div>
+                <p class="quiz">Unesi korisničko ime i pristupi <br> najboljem <a href="./index.html"
+                        class="quizlink">KVIZU</a>
+                    ikada!</p>
+                <br>
+                <p class="base">Ili budi geograf i <br><a href="./index.html" class="navlink">obogati
+                        bazu</a> pojmova</p>
+            </div>
+            <form class="usernamebox">
+                <input type="text" class="usernameinput" placeholder="Vaše korisničko ime">
+                <button class="loginbutton" type="submit">
+                    POŠALJI
+                </button>
+            </form>
+        </div>
     </div>
-  </div>
-  <footer>Zanimljiva Geografija - Bootcamp Projekat 2020</footer>
+    <footer>Zanimljiva Geografija - Bootcamp Projekat 2020</footer>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
 
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
- https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyBLKZBbApvlDiKxsiiWcXUVtIO8jIxKFUY",
-      authDomain: "zgeografija-906fc.firebaseapp.com",
-      databaseURL: "https://zgeografija-906fc.firebaseio.com",
-      projectId: "zgeografija-906fc",
-      storageBucket: "zgeografija-906fc.appspot.com",
-      messagingSenderId: "398181599037",
-      appId: "1:398181599037:web:1b46b4de7afe57560be754"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    let db = firebase.firestore();
-  </script>
-  <!-- <script type="text/javascript" src="app.js" charset="utf-8"></script> -->
-  <script type="text/javascript" src="username.js" charset="utf-8"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-      try {
-        let app = firebase.app();
-        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
-        console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-      }
-    });
-  </script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBLKZBbApvlDiKxsiiWcXUVtIO8jIxKFUY",
+            authDomain: "zgeografija-906fc.firebaseapp.com",
+            databaseURL: "https://zgeografija-906fc.firebaseio.com",
+            projectId: "zgeografija-906fc",
+            storageBucket: "zgeografija-906fc.appspot.com",
+            messagingSenderId: "398181599037",
+            appId: "1:398181599037:web:1b46b4de7afe57560be754"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+    </script>
+    <!-- <script type="text/javascript" src="app.js" charset="utf-8"></script> -->
+    <script type="text/javascript" src="./script/username.js" charset="utf-8"></script>
 </body>
+
+
 
 </html>
