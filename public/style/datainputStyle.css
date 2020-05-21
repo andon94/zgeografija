@@ -91,7 +91,8 @@ form{
     font-size: 1.4rem;
     padding: 1.5rem;
     text-align: center;
-    /* border: none; */
+    border: none;
+    background: #ebe9e9;
     color: #333333;
 }
 
