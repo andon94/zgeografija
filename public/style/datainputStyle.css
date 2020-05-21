@@ -4,12 +4,56 @@
     font-family: 'Raleway', sans-serif;    
 }
 
-body{
+/* body{ */
     /* background: url(../images/canada.png) 50% 40% no-repeat, url(../images/bulgaria.png) 53% 33% no-repeat; */
-    background: url(../images/slav.png) no-repeat 50% 40%;
+    /* background: url(../images/slav.png) no-repeat 50% 40%;
     background-size: 250px;
     height: 100vh;
+} */
+
+/* .img-div{
+    height: 100px;
+} */
+
+.img-div img{
+    height: 200px;
+    margin-top: -3rem;
 }
+
+.img-div img:hover{
+    transform: scale(1.1, 1.1);
+}
+
+.imgtext{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333333;
+
+    letter-spacing: 1px;
+    margin: 2rem;
+}
+
+.imgtext:hover{
+    color: #333333;
+    cursor: pointer;
+}
+
+
+.list{
+    padding-top: 4rem;
+}
+
+.lista li{
+    padding: 0.35rem 1.5rem;
+    /* font-size: 1.1rem; */
+    width: fit-content;
+    margin: auto;
+    font-weight: bold;
+    color: #333333;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
 
 h1{
     text-align: center;
@@ -48,11 +92,11 @@ h1 a{
 
 form{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 20% 40%;
     grid-template-rows: 50% 50%;
     padding-top: 7vh;
     text-align: center;
-    height: 70vh;
+    /* height: 80vh; */
 }
 
 .error{
@@ -61,7 +105,7 @@ form{
     color: red;
     letter-spacing: 1px;
     width: 40%;
-    margin: -15vh auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 
 
@@ -175,7 +219,7 @@ button {
 
     padding: 1rem 2rem;
     border: none;
-    margin: 1rem auto 0 auto;
+    margin: 5rem auto 0 auto;
     border-radius: 3px;
 }
 
@@ -184,12 +228,16 @@ button:hover {
 }
 
 
+/* .container{
+    height: 100%;
+}
 
 footer{
     text-align: center;
     background-color: aliceblue;
-    position: fixed;
-    bottom: 0;
-    display: block;
     width: 100%;
-}
+    font-size: 0.7rem;
+    padding: 1rem 0;
+} */
+
+

@@ -16,6 +16,9 @@ const error = document.querySelector('.error')
 
 const up = document.querySelector('#up')
 
+const imgtext = document.querySelector('.imgtext')
+const lista = document.querySelector('.lista')
+
 
 
 
@@ -54,12 +57,16 @@ let show = () => {
 drop.addEventListener('click', () => {
 
     pojam.innerHTML = null;
-    kategorija.innerHTML = null;
+    // kategorija.innerHTML = null;
     show()
 })
 
 desc.addEventListener('click', () => {
     show()
+})
+
+imgtext.addEventListener('click', () => {
+    lista.classList.toggle('none')
 })
 
 
@@ -97,6 +104,9 @@ class Pojam {
         return response;
     }
 }
+
+
+
 
 
 

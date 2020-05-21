@@ -4,9 +4,9 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.container{
+/* .container{
     height: 100vh;
-}
+} */
 
 h1{
     text-align: center;
@@ -91,7 +91,12 @@ a{
 
 
 
-footer{
+/* footer{
     text-align: center;
     background-color: aliceblue;
-}
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    font-size: 0.7rem;
+    padding: 1rem 0;
+} */
