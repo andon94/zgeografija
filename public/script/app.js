@@ -1,9 +1,4 @@
-const loginButton = document.querySelector('.loginbutton')
-const username = document.querySelector('.username')
-const usernameInput = document.querySelector('.usernameinput')
-
 const kategorija = document.querySelector('.kat')
-const mobilnaKategorija = document.querySelector('.mobilna-kategorija')
 const pojam = document.querySelector('.po')
 
 const datainput = document.querySelector('#datainput');
@@ -12,17 +7,16 @@ const radioinput = document.querySelectorAll('.radio')
 
 const drop = document.querySelector('.drop')
 const menu = document.querySelector('.menu')
-
-const error = document.querySelector('.error')
-
 const up = document.querySelector('#up')
 
 const imgtext = document.querySelector('.imgtext')
 const lista = document.querySelector('.lista')
 
 const usrnm = document.querySelector('.usrnm')
+const mobilnaKategorija = document.querySelector('.mobilna-kategorija')
+const error = document.querySelector('.error')
 
-
+// priveremeni selektori dok ne dodjem do boljeg resenja
 const one = document.querySelector('#one')
 const two = document.querySelector('#two')
 const three = document.querySelector('#three')
@@ -31,10 +25,8 @@ const five = document.querySelector('#five')
 
 
 
-
 let name = localStorage.getItem("usernameLS");
 usrnm.innerHTML = `Vase korisnicko ime je: ${name}`
-
 
 
 
@@ -83,19 +75,12 @@ desc.addEventListener('click', () => {
     show()
 })
 
-// imgtext.addEventListener('click', () => {
-//     lista.classList.toggle('none')
-// })
-
-
-
-
-
 
 
 // baza 
 let collection = db.collection('pojmovi');
 
+// top lista
 collection
     .get()
     .then(function (querySnapshot) {
@@ -135,10 +120,6 @@ collection
 
 
 
-
-
-
-
 class Pojam {
 
     constructor(ka, p) {
@@ -147,15 +128,23 @@ class Pojam {
         this.pojmovi = db.collection('pojmovi')
     }
 
-    // model za upis pojmova u bazu
     async dodajPojam(kategorija, pojam) {
 
+        // pocetno slovo
+        let ps = pojam.charAt(0).toUpperCase();
+        if (pojam.slice(0, 2) === 'Nj' || pojam.slice(0, 2) === 'Lj' || pojam.slice(0, 2) === 'Dž') {
+            ps = pojam.slice(0, 2);
+        }
+        else {
+            ps = pojam.slice(0, 1);
+        }
 
         let date = new Date();
+
         let element = {
             kategorija: kategorija,
             korisnik: name,
-            pocetnoslovo: pojam.charAt(0).toUpperCase(),
+            pocetnoslovo: ps,
             pojam: pojam,
             vreme: firebase.firestore.Timestamp.fromDate(date)
         }
@@ -163,30 +152,30 @@ class Pojam {
         let response = await this.pojmovi.add(element);
         return response;
     }
+
+    // formatiranje pojma 
+    formatPojam(pojam) {
+        let inputPojam = pojam
+        let formatPojam = inputPojam.split(" ").join("").toLowerCase();
+        let formatedPojam = formatPojam.charAt(0).toUpperCase() + formatPojam.slice(1)
+        return formatedPojam
+    }
 }
-
-
-
-
-
-
 
 
 
 // upis podataka u bazu klikom na button
 let pojam01 = new Pojam();
-
+// submit forme
 datainput.addEventListener('submit', e => {
     e.preventDefault();
-    // formatiranje stringa
-    inputPojam = pojaminput.value;
-    formatPojam = inputPojam.split(" ").join("").toLowerCase();
-    formatedPojam = formatPojam.charAt(0).toUpperCase() + formatPojam.slice(1)
 
-    console.log(formatedPojam)
+    // formatirani pojam
+    let fp = pojam01.formatPojam(pojaminput.value)
+    console.log(fp)
 
+    // odabrana kategorija
     let inputKategorija = null;
-
     for (let i = 0; i < radioinput.length; i++) {
         if (radioinput[i].checked) {
             inputKategorija = radioinput[i].value
@@ -198,20 +187,20 @@ datainput.addEventListener('submit', e => {
 
         let regex = /^[a-zA-Z]*$/
         // ukoliko pojam odgovara regexu, kategorija nije prazna i pojam nije prazan, nastavi
-        if (formatedPojam.match(regex) && inputKategorija != null && formatedPojam != '') {
+        if (fp.match(regex) && inputKategorija != null && fp != '') {
 
+            // proveri da li postoje duplikati
             pojam01.pojmovi
                 .where('kategorija', '==', inputKategorija)
-                .where('pojam', '==', formatedPojam)
+                .where('pojam', '==', fp)
                 .get()
                 .then(snapshot => {
-                    // console.log(snapshot.docs.length)
+                    // ako nema takvog dokumenta, dodaj ga u bazu
                     if (snapshot.docs.length == 0) {
-
-                        pojam01.dodajPojam(inputKategorija, formatedPojam)
+                        pojam01.dodajPojam(inputKategorija, fp)
                             .then(() => {
                                 console.log("Pojam uspesno dodat")
-                                pojam.innerHTML = formatedPojam;
+                                pojam.innerHTML = fp;
                                 pojaminput.setAttribute('placeholder', 'Dodato')
                                 pojaminput.value = ''
                             })
@@ -221,7 +210,6 @@ datainput.addEventListener('submit', e => {
                                 pojam.innerHTML = null;
                                 kategorija.innerHTML = null;
                             })
-
                     } else {
                         console.log('Pojam je duplikat i nije dodat u bazu')
                         error.innerHTML = 'Pojam je vec unet.'

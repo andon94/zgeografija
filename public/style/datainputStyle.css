@@ -4,63 +4,6 @@
     font-family: 'Raleway', sans-serif;    
 }
 
-/* body{ */
-    /* background: url(../images/canada.png) 50% 40% no-repeat, url(../images/bulgaria.png) 53% 33% no-repeat; */
-    /* background: url(../images/slav.png) no-repeat 50% 40%;
-    background-size: 250px;
-    height: 100vh;
-} */
-
-
-
-.img-div img{
-    height: 200px;
-    margin-top: -3rem;
-    transition: all .2s ease-in-out;
-}
-
-.img-div img:hover{
-    transform: scale(1.1, 1.1);
-}
-
-
-.imgtext{
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #333333;
-
-    letter-spacing: 1px;
-    margin: 2rem;
-    cursor: default;
-
-}
-
-/* .imgtext:hover{
-    color: #333333;
-    cursor: pointer;
-} */
-
-
-.list{
-    padding-top: 4rem;
-
-}
-
-.lista li{
-    padding: 0.35rem 1.5rem;
-    font-weight: bold;
-    margin: auto;
-    color: #333333;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    list-style-type: none;
-    /* word-spacing: 2rem; */
-    cursor: default;
-
-
-}
-
-
 h1{
     text-align: center;
     padding-top: 1rem;
@@ -68,7 +11,6 @@ h1{
     letter-spacing: 4px;
     font-size: 2.5rem;
     text-decoration: none;
-
 }
 
 h1 a{
@@ -77,6 +19,49 @@ h1 a{
     font-family: 'Black Ops One', cursive;
 }
 
+form{
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    padding-top: 7vh;
+    text-align: center;
+}
+
+/* brojevi pored header-a */
+.numbers{
+    height: 35px;
+    display: inline;
+    margin-right: 0.8rem;
+    /* margin-top: 3; */
+    position: relative;
+    top: 0.5rem;
+}
+
+/* hederi */
+.pojam label, .drop{
+    font-size: 1.5rem;
+    font-family: 'Black Ops One', cursive;
+    color: #444444;
+    display: inline;
+    margin-right: 2.5rem;
+}
+
+/* ispis vrednosti inputa ispod hedera */
+.kat, .po {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 2rem;
+    color: rgba(4, 147, 114, 1);
+
+    min-height: 3rem;
+}
+
+/* deo forme sa kategorijama */
+.kategorija p:hover{
+    cursor: pointer;
+}
+
+/* opis za pristup kategorijama */
 #desc {
     text-align: center;
     font-size: 1rem;
@@ -88,55 +73,72 @@ h1 a{
     margin: auto;
 }
 
-
-.none{
-    display: none;
-}
-
-:placeholder-shown{
-    color: blue;
-}
-
-form{
+/* kategorije */
+.menu div {
     display: grid;
-    grid-template-columns: 40% 20% 40%;
-    padding-top: 7vh;
+    grid-template-columns: 70% 30%;
     text-align: center;
-    /* height: 80vh; */
+    padding: 0.5rem 0;
+    width: 30vw;
+    margin: auto;
+    letter-spacing: 2px;
+    font-weight: bold;
 }
 
-/* .grid{
-    grid-template-areas:
-    'kategorija' 'img' 'pojam'
-    ;
-} */
+/* strelica */
+.arrow{
+    height: 6rem;
+    margin-top: 3rem;
 
-.error{
-    text-align: center;
-    padding: 3rem;
-    color: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: 100000;
+}
+
+@keyframes example {
+    0%   {top:0px;}
+    50%  {top:5rem;}
+    100% {top:0px;}
+  }
+
+
+/* div sa slikom i top listom */
+.img-div img{
+    height: 200px;
+    margin-top: -3rem;
+    transition: all .2s ease-in-out;
+}
+
+.img-div img:hover{
+    transform: scale(1.1, 1.1);
+}
+
+/* opis top liste */
+.imgtext{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333333;
+
     letter-spacing: 1px;
-    width: 40%;
-    margin: 0 auto 0 auto;
+    margin: 2rem;
+    cursor: default;
+
 }
 
-
-
-
-.pojam label, .drop{
-    font-size: 1.5rem;
-    font-family: 'Black Ops One', cursive;
-    color: #444444;
-    display: inline;
-    /* margin: auto; */
-    margin-right: 2.5rem;
+/* sadrzaj top liste */
+.lista li{
+    padding: 0.35rem 1.5rem;
+    font-weight: bold;
+    margin: auto;
+    color: #333333;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    list-style-type: none;
+    cursor: default;
 }
 
-.kategorija p:hover{
-    cursor: pointer;
-}
-
-
+/* pojmovi */
 .pojam label {
     display: inline;
 }
@@ -149,84 +151,6 @@ form{
     background: #ebe9e9;
     color: #333333;
 }
-
-.numbers{
-    height: 35px;
-    display: inline;
-    margin-right: 0.8rem;
-    /* margin-top: 3; */
-    position: relative;
-    top: 0.5rem;
-}
-
-
-/* .menu{
-    margin-top: -1rem;
-} */
-
-
-.menu div {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    text-align: center;
-    padding: 0.5rem 0;
-    width: 30vw;
-    margin: auto;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-.arrow{
-    height: 6rem;
-    margin-top: 3rem;
-
-    position: relative;
-    animation-name: example;
-    animation-duration: 2s;
-    animation-iteration-count: 100000;
-}
-
-
-@keyframes example {
-    0%   {top:0px;}
-    /* 25%  {top:2rem;} */
-    50%  {top:5rem;}
-    /* 75%  {top:2rem;} */
-    100% {top:0px;}
-  }
-
-
-.inputdisplay{
-    text-align: center;
-    padding: 1rem;
-    font-size: 7rem;
-    font-weight: bold;
-    color: #666666;
-    width: 90%;
-    margin: auto;
-}
-
-
-.kat, .po {
-    text-transform: uppercase;
-    font-size: 2.5rem;
-    font-weight: bold;
-    padding: 2rem;
-    color: rgba(4, 147, 114, 1);
-
-    min-height: 3rem;
-}
-
-.usrnm{
-    /* color: black; */
-    letter-spacing: 1px;
-    line-height: 1.5rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    cursor: default;
-
-}
-
 
 button {
     width: fit-content;
@@ -248,22 +172,42 @@ button:hover {
     background: rgb(1, 110, 110);
 }
 
+
+/* obavestava koji je username */
+.usrnm{
+    /* color: black; */
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: default;
+}
+
+/* obavestava koja je kategorija izabrana na malim ekranima */
 .mobilna-kategorija{
     display: none;
 }
 
-
-/* .container{
-    height: 100%;
+.error{
+    text-align: center;
+    padding: 3rem;
+    color: red;
+    letter-spacing: 1px;
+    width: 40%;
+    margin: 0 auto 0 auto;
 }
 
-footer{
+.none{
+    display: none;
+}
+
+/* footer{
     text-align: center;
     background-color: aliceblue;
     width: 100%;
     font-size: 0.7rem;
     padding: 1rem 0;
-} */
+}  */
 
 
 
@@ -279,6 +223,15 @@ footer{
         display: none;
     }
 
+    #desc{
+        display: none;
+    }
+
+    .menu{
+        display: block;
+    }
+
+    /* nazivi grid pozicija *3 */
     .img-div{
         grid-area: img;
     }
@@ -291,8 +244,21 @@ footer{
         grid-area: pojam;
         padding-top: 2rem;
     }
-    
 
+
+    .pojam label, .drop {
+        margin-right: 0;
+    }
+
+    .pojam input{
+        font-size: 1rem;
+        padding: 1.5rem 0.5rem;
+        text-align: center;
+        border: none;
+        background: #ebe9e9;
+        color: #333333;
+    }
+    
     form{
         display: grid;
         grid-template-columns: auto;
@@ -304,28 +270,14 @@ footer{
         ;
     }
 
-    #desc{
-        display: none;
-    }
-
-    .menu{
-        display: block;
-    }
-
-    
     .menu div {
         display: grid;
-        grid-template-columns: 100% 10%;
+        grid-template-columns: 80% 20%;
         text-align: center;
+        min-width: 140px;
     }
-
-    .pojam label, .drop {
-        margin-right: 0;
-    }
-
 
     .lista{
-        display: block;
         margin-bottom: 2rem;
     }
     
@@ -339,24 +291,5 @@ footer{
         line-height: 1.5rem;
         font-weight: bold;
         margin-top: 0.3rem;
-    }
-    /* .listaimg {
-        display: none;
-    } */
-/* 
-    .img-div{
-        position: absolute;
-        top: 80vh;
-        margin: auto;
-        width: 100%;
-    } */
-
-    .pojam input{
-        font-size: 1rem;
-        padding: 1.5rem 0.5rem;
-        text-align: center;
-        border: none;
-        background: #ebe9e9;
-        color: #333333;
     }
   }

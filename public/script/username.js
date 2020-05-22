@@ -6,16 +6,15 @@ const kvizLink = document.querySelector('.quizlink')
 
 const button = document.querySelector('.loginbutton')
 
-usernameForm.addEventListener('submit', e => {
+// set username inside local storage
+usernameForm.addEventListener('submit', () => {
     let username = usernameInput.value;
     console.log(username)
     localStorage.setItem('usernameLS', username)
 })
 
-// localStorage.clear()
-
+// nakon unosa username-a dodaj href za linkove 
 let name = localStorage.getItem("usernameLS");
-
 if (name != null && name != '') {
     console.log('continue')
     bazaLink.classList.add('show')
@@ -29,4 +28,7 @@ if (name != null && name != '') {
 } else {
     console.log('stop')
 }
+
+// localStorage.clear()
+
 
