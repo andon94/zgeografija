@@ -1,5 +1,3 @@
-// import { ispisHof } from "./halloffame.js";
-
 const kategorija = document.querySelector('.kat')
 const pojam = document.querySelector('.po')
 
@@ -38,7 +36,8 @@ const writePojam = () => {
     pojam.innerHTML = pojaminput.value
 }
 
-let cleanError = () => {
+
+const cleanError = () => {
     error.innerHTML = '';
 }
 
