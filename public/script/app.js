@@ -3,6 +3,7 @@ const username = document.querySelector('.username')
 const usernameInput = document.querySelector('.usernameinput')
 
 const kategorija = document.querySelector('.kat')
+const mobilnaKategorija = document.querySelector('.mobilna-kategorija')
 const pojam = document.querySelector('.po')
 
 const datainput = document.querySelector('#datainput');
@@ -49,6 +50,8 @@ for (let i = 0; i < radioinput.length; i++) {
 
         if (radioinput[i].checked) {
             kategorija.innerHTML = radioinput[i].value
+            mobilnaKategorija.innerHTML = `Odabrana kategorija: ${radioinput[i].value}`
+
             pojam.innerHTML = null;
         }
     }

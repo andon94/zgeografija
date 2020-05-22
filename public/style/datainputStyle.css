@@ -238,6 +238,10 @@ button:hover {
     background: rgb(1, 110, 110);
 }
 
+.mobilna-kategorija{
+    display: none;
+}
+
 
 /* .container{
     height: 100%;
@@ -319,6 +323,13 @@ footer{
         margin: 3rem auto 0 auto;
     }
 
+    .mobilna-kategorija{
+        display: block;
+        letter-spacing: 1px;
+        line-height: 1.5rem;
+        font-weight: bold;
+        margin-top: 0.3rem;
+    }
     /* .listaimg {
         display: none;
     } */
