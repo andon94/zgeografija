@@ -294,8 +294,15 @@ footer{
         margin: 3rem auto 0 auto;
     }
 
-    .img-div {
+    .listaimg {
         display: none;
+    }
+
+    .img-div{
+        position: absolute;
+        top: 80vh;
+        margin: auto;
+        width: 100%;
     }
 
     .pojam input{
