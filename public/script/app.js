@@ -1,3 +1,5 @@
+// import { ispisHof } from "./halloffame.js";
+
 const kategorija = document.querySelector('.kat')
 const pojam = document.querySelector('.po')
 
@@ -42,7 +44,7 @@ let cleanError = () => {
 
 for (let i = 0; i < radioinput.length; i++) {
 
-    radioinput[i].onclick = check = () => {
+    radioinput[i].onclick = () => {
         radioinput[i].setAttribute('checked', true);
 
         if (radioinput[i].checked) {
@@ -81,38 +83,51 @@ desc.addEventListener('click', () => {
 let collection = db.collection('pojmovi');
 
 // top lista
+
+// ispisHof(one);
+
 collection
     .get()
-    .then(function (querySnapshot) {
-        let niz = []
-        querySnapshot.forEach(function (doc) {
+    .then(snapshot => {
+        // niz unesenih korisnickih imena
+        let niz = [];
+        snapshot.docs.forEach(doc => {
             niz.push(doc.data().korisnik)
         });
 
-        let sort = {};
-        niz.forEach(function (x) { sort[x] = (sort[x] || 0) + 1; });
-        console.log(sort)
+        // objekat korisnickih imena i broja unosa individualno
+        let objekat = {};
+        niz.forEach(function (x) { objekat[x] = (objekat[x] || 0) + 1; });
+        console.log(objekat)
 
-        // privremeno resenje
+        // niz clanova objekta
+        let korBr = [];
+        for (let vehicle in objekat) {
+            korBr.push([vehicle, objekat[vehicle]]);
+        }
 
-        let first = Object.keys(sort)[0];
-        let second = Object.keys(sort)[1];
-        let third = Object.keys(sort)[2];
-        let forth = Object.keys(sort)[3];
-        let fifth = Object.keys(sort)[4];
+        // sortiran niz
+        korBr.sort(function (a, b) {
+            return b[1] - a[1];
+        });
 
-        let name1 = sort[first]
-        let name2 = sort[second]
-        let name3 = sort[third]
-        let name4 = sort[forth]
-        let name5 = sort[fifth]
+        let final = korBr.slice(0, 5)
 
-        one.innerHTML = `${name1} ${first}`
-        two.innerHTML = `${name2} ${second}`
-        three.innerHTML = `${name3} ${third}`
-        four.innerHTML = `${name4} ${forth}`
-        five.innerHTML = `${name5} ${fifth}`
+        final.forEach(x => {
+            let sum = x[1]
+            console.log(sum)
 
+            let divS = document.createElement('div')
+            divS.innerHTML = sum
+            lista.appendChild(divS)
+
+            let korisnici = x[0]
+            console.log(korisnici)
+
+            let divK = document.createElement('div')
+            divK.innerHTML = korisnici
+            lista.appendChild(divK)
+        })
     })
     .catch(function (error) {
         console.log(error);

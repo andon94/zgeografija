@@ -39,6 +39,7 @@ form{
 /* hederi */
 .pojam label, .drop{
     font-size: 1.5rem;
+    font-weight: bold;
     font-family: 'Black Ops One', cursive;
     color: #444444;
     display: inline;
@@ -127,15 +128,28 @@ form{
 }
 
 /* sadrzaj top liste */
-.lista li{
-    padding: 0.35rem 1.5rem;
-    font-weight: bold;
-    margin: auto;
+.lista{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center;
     color: #333333;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    list-style-type: none;
-    cursor: default;
+}
+
+.lista div{
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 2rem;
+}
+
+.lista div:nth-child(odd) {
+    text-align: right;
+    padding-right: 3rem;
+}
+
+  .lista div:nth-child(even) {
+    text-align: left;
+    letter-spacing: 1px;
+    text-transform: lowercase;
 }
 
 /* pojmovi */
