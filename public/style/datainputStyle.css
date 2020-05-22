@@ -31,16 +31,19 @@
 
     letter-spacing: 1px;
     margin: 2rem;
+    cursor: default;
+
 }
 
-.imgtext:hover{
+/* .imgtext:hover{
     color: #333333;
     cursor: pointer;
-}
+} */
 
 
 .list{
     padding-top: 4rem;
+
 }
 
 .lista li{
@@ -52,6 +55,9 @@
     text-transform: uppercase;
     list-style-type: none;
     /* word-spacing: 2rem; */
+    cursor: default;
+
+
 }
 
 
@@ -62,6 +68,7 @@ h1{
     letter-spacing: 4px;
     font-size: 2.5rem;
     text-decoration: none;
+
 }
 
 h1 a{
@@ -216,6 +223,8 @@ form{
     line-height: 1.5rem;
     font-weight: bold;
     margin-top: 1rem;
+    cursor: default;
+
 }
 
 
@@ -232,6 +241,7 @@ button {
     border: none;
     margin: 3rem auto 0 auto;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 button:hover {

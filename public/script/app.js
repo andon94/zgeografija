@@ -32,6 +32,11 @@ const five = document.querySelector('#five')
 
 
 
+let name = localStorage.getItem("usernameLS");
+usrnm.innerHTML = `Vase korisnicko ime je: ${name}`
+
+
+
 
 // sinhrono ispisivanje inputa
 
@@ -78,9 +83,9 @@ desc.addEventListener('click', () => {
     show()
 })
 
-imgtext.addEventListener('click', () => {
-    lista.classList.toggle('none')
-})
+// imgtext.addEventListener('click', () => {
+//     lista.classList.toggle('none')
+// })
 
 
 
@@ -96,15 +101,7 @@ collection
     .then(function (querySnapshot) {
         let niz = []
         querySnapshot.forEach(function (doc) {
-
-            let usr = doc.data()
-
-            if (usr) {
-                niz.push(
-                    usr.korisnik,
-                )
-            }
-
+            niz.push(doc.data().korisnik)
         });
 
         let sort = {};
@@ -131,16 +128,6 @@ collection
         four.innerHTML = `${name4} ${forth}`
         five.innerHTML = `${name5} ${fifth}`
 
-
-
-
-
-
-
-
-
-
-
     })
     .catch(function (error) {
         console.log(error);
@@ -148,8 +135,9 @@ collection
 
 
 
-let name = localStorage.getItem("usernameLS");
-usrnm.innerHTML = `Vase korisnicko ime je: ${name}`
+
+
+
 
 class Pojam {
 
@@ -194,6 +182,7 @@ datainput.addEventListener('submit', e => {
     inputPojam = pojaminput.value;
     formatPojam = inputPojam.split(" ").join("").toLowerCase();
     formatedPojam = formatPojam.charAt(0).toUpperCase() + formatPojam.slice(1)
+
     console.log(formatedPojam)
 
     let inputKategorija = null;
@@ -232,17 +221,14 @@ datainput.addEventListener('submit', e => {
                                 pojam.innerHTML = null;
                                 kategorija.innerHTML = null;
                             })
+
                     } else {
                         console.log('Pojam je duplikat i nije dodat u bazu')
                         error.innerHTML = 'Pojam je vec unet.'
                         pojaminput.setAttribute('placeholder', 'Ovde unesi Pojam')
                         pojaminput.value = ''
-
-
                     }
                 })
-
-
 
         } else {
             error.innerHTML = 'Izaberite jednu od kategorija i unesite odgovarajuci pojam. <br>Koristite iskljucivo tekstualne karaktere.'
