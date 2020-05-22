@@ -11,9 +11,7 @@
     height: 100vh;
 } */
 
-/* .img-div{
-    height: 100px;
-} */
+
 
 .img-div img{
     height: 200px;
@@ -95,11 +93,16 @@ h1 a{
 form{
     display: grid;
     grid-template-columns: 40% 20% 40%;
-    grid-template-rows: 50% 50%;
     padding-top: 7vh;
     text-align: center;
     /* height: 80vh; */
 }
+
+/* .grid{
+    grid-template-areas:
+    'kategorija' 'img' 'pojam'
+    ;
+} */
 
 .error{
     text-align: center;
@@ -109,6 +112,8 @@ form{
     width: 40%;
     margin: 0 auto 0 auto;
 }
+
+
 
 
 .pojam label, .drop{
@@ -124,10 +129,6 @@ form{
     cursor: pointer;
 }
 
-.kategorija {
-    grid-row-start: 1;
-    grid-row-end: span 2;
-}
 
 .pojam label {
     display: inline;
@@ -264,12 +265,29 @@ footer{
         display: none;
     }
 
+    .img-div{
+        grid-area: img;
+    }
+
+    .kategorija{
+        grid-area: kategorija;
+    }
+
+    .pojam{
+        grid-area: pojam;
+        padding-top: 2rem;
+    }
+    
+
     form{
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: auto;
         /* grid-template-rows: 20% 20%; */
         padding-top: 0;
         text-align: center;
+        grid-template-areas:
+        'img' 'kategorija' 'pojam'
+        ;
     }
 
     #desc{
@@ -301,16 +319,16 @@ footer{
         margin: 3rem auto 0 auto;
     }
 
-    .listaimg {
+    /* .listaimg {
         display: none;
-    }
-
+    } */
+/* 
     .img-div{
         position: absolute;
         top: 80vh;
         margin: auto;
         width: 100%;
-    }
+    } */
 
     .pojam input{
         font-size: 1rem;
