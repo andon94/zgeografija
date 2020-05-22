@@ -280,6 +280,13 @@ footer{
         display: block;
     }
 
+    
+    .menu div {
+        display: grid;
+        grid-template-columns: 100% 10%;
+        text-align: center;
+    }
+
     .pojam label, .drop {
         margin-right: 0;
     }
