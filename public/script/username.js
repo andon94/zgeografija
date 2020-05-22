@@ -21,7 +21,7 @@ if (name != null && name != '') {
     bazaLink.setAttribute("href", "./datainput.html");
 
     kvizLink.classList.add('show')
-    kvizLink.setAttribute("href", "./kviz.html");
+    kvizLink.setAttribute("href", "./quiz.html");
 
     button.innerHTML = 'Promeni Korisnicko Ime'
     usernameInput.setAttribute('placeholder', `Ime: ${name}`)

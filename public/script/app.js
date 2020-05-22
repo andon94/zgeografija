@@ -200,7 +200,7 @@ datainput.addEventListener('submit', e => {
     // ukoliko username nije prazan nastavi
     if (name != null) {
 
-        let regex = /^[a-zA-Z\wčđćšžŠĐČĆŽ]*$/
+        let regex = /[^!@#$%^&*(),.?":{}|<>0-9_\s]/g;
         // ukoliko pojam odgovara regexu, kategorija nije prazna i pojam nije prazan, nastavi
         if (fp.match(regex) && inputKategorija != null && fp != '') {
 
