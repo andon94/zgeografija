@@ -28,7 +28,7 @@ const five = document.querySelector('#five')
 
 
 let name = localStorage.getItem("usernameLS");
-usrnm.innerHTML = `Vase korisnicko ime je: ${name}`
+usrnm.innerHTML = `Vaše korisničko ime je: ${name}`
 
 
 
@@ -214,7 +214,7 @@ datainput.addEventListener('submit', e => {
                     if (snapshot.docs.length == 0) {
                         pojam01.dodajPojam(inputKategorija, fp)
                             .then(() => {
-                                console.log("Pojam uspesno dodat")
+                                console.log("Pojam uspešno dodat")
                                 pojam.innerHTML = fp;
                                 pojaminput.setAttribute('placeholder', 'Dodato')
                                 pojaminput.value = ''
@@ -227,21 +227,21 @@ datainput.addEventListener('submit', e => {
                             })
                     } else {
                         console.log('Pojam je duplikat i nije dodat u bazu')
-                        error.innerHTML = 'Pojam je vec unet.'
+                        error.innerHTML = 'Pojam je već unet.'
                         pojaminput.setAttribute('placeholder', 'Ovde unesi Pojam')
                         pojaminput.value = ''
                     }
                 })
 
         } else {
-            error.innerHTML = 'Izaberite jednu od kategorija i unesite odgovarajuci pojam. <br>Koristite iskljucivo tekstualne karaktere.'
+            error.innerHTML = 'Izaberite jednu od kategorija i unesite odgovarajući pojam. <br>Koristite isključivo tekstualne karaktere.'
             pojam.innerHTML = null;
             pojaminput.setAttribute('placeholder', 'Ovde unesi Pojam')
             pojaminput.value = ''
         }
 
     } else {
-        error.innerHTML = 'Unesite Korisnicko Ime, pa nastavite sa unosom podataka.'
+        error.innerHTML = 'Unesite Korisničko Ime, pa nastavite sa unosom podataka.'
         pojam.innerHTML = null;
         kategorija.innerHTML = null;
     }

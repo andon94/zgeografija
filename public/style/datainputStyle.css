@@ -78,7 +78,7 @@ form{
 .menu div {
     display: grid;
     grid-template-columns: 70% 30%;
-    text-align: center;
+    /* text-align: center; */
     padding: 0.5rem 0;
     width: 30vw;
     margin: auto;
