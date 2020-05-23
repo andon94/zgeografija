@@ -198,9 +198,9 @@ button:hover {
 }
 
 /* obavestava koja je kategorija izabrana na malim ekranima */
-.mobilna-kategorija{
+/* .mobilna-kategorija{
     display: none;
-}
+} */
 
 .error{
     text-align: center;
@@ -252,11 +252,20 @@ button:hover {
 
     .kategorija{
         grid-area: kategorija;
+        /* position: relative;
+        left: 0; */
+        width: 50%;
     }
 
     .pojam{
-        grid-area: pojam;
-        padding-top: 2rem;
+        grid-area: kategorija;
+        /* padding-top: 2rem; */
+        margin-left: 50%;
+    }
+
+    .kat, .po {
+        font-size: 2rem;
+        word-break: break-all;
     }
 
 
@@ -298,12 +307,12 @@ button:hover {
     .error{
         margin: 3rem auto 0 auto;
     }
-
+/* 
     .mobilna-kategorija{
         display: block;
         letter-spacing: 1px;
         line-height: 1.5rem;
         font-weight: bold;
         margin-top: 0.3rem;
-    }
+    } */
   }

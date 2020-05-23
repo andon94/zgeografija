@@ -13,7 +13,7 @@ const imgtext = document.querySelector('.imgtext')
 const lista = document.querySelector('.lista')
 
 const usrnm = document.querySelector('.usrnm')
-const mobilnaKategorija = document.querySelector('.mobilna-kategorija')
+// const mobilnaKategorija = document.querySelector('.mobilna-kategorija')
 const error = document.querySelector('.error')
 
 const button = document.querySelector('#button')
@@ -51,7 +51,7 @@ for (let i = 0; i < radioinput.length; i++) {
 
         if (radioinput[i].checked) {
             kategorija.innerHTML = radioinput[i].value
-            mobilnaKategorija.innerHTML = `Odabrana kategorija: ${radioinput[i].value}`
+            // mobilnaKategorija.innerHTML = `Odabrana kategorija: ${radioinput[i].value}`
 
             pojam.innerHTML = null;
         }
