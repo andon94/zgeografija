@@ -16,6 +16,8 @@ const usrnm = document.querySelector('.usrnm')
 const mobilnaKategorija = document.querySelector('.mobilna-kategorija')
 const error = document.querySelector('.error')
 
+const button = document.querySelector('#button')
+
 // priveremeni selektori dok ne dodjem do boljeg resenja
 const one = document.querySelector('#one')
 const two = document.querySelector('#two')
@@ -30,12 +32,13 @@ usrnm.innerHTML = `Vaše korisničko ime je: ${name}`
 
 
 
+
+
 // sinhrono ispisivanje inputa
 
 const writePojam = () => {
     pojam.innerHTML = pojaminput.value
 }
-
 
 const cleanError = () => {
     error.innerHTML = '';
@@ -66,9 +69,6 @@ let show = () => {
 }
 
 drop.addEventListener('click', () => {
-
-    pojam.innerHTML = null;
-    // kategorija.innerHTML = null;
     show()
 })
 
@@ -83,55 +83,54 @@ let collection = db.collection('pojmovi');
 
 // top lista
 
-// ispisHof(one);
+let ispisHof = () => {
+    collection
+        .get()
+        .then(snapshot => {
+            // niz unesenih korisnickih imena
+            let niz = [];
+            snapshot.docs.forEach(doc => {
+                niz.push(doc.data().korisnik)
+            });
 
-collection
-    .get()
-    .then(snapshot => {
-        // niz unesenih korisnickih imena
-        let niz = [];
-        snapshot.docs.forEach(doc => {
-            niz.push(doc.data().korisnik)
-        });
+            // objekat korisnickih imena i broja unosa individualno
+            let objekat = {};
+            niz.forEach(function (x) { objekat[x] = (objekat[x] || 0) + 1; });
+            // console.log(objekat)
 
-        // objekat korisnickih imena i broja unosa individualno
-        let objekat = {};
-        niz.forEach(function (x) { objekat[x] = (objekat[x] || 0) + 1; });
-        console.log(objekat)
+            // niz clanova objekta
+            let korBr = [];
+            for (let vehicle in objekat) {
+                korBr.push([vehicle, objekat[vehicle]]);
+            }
 
-        // niz clanova objekta
-        let korBr = [];
-        for (let vehicle in objekat) {
-            korBr.push([vehicle, objekat[vehicle]]);
-        }
+            // sortiran niz
+            korBr.sort(function (a, b) {
+                return b[1] - a[1];
+            });
 
-        // sortiran niz
-        korBr.sort(function (a, b) {
-            return b[1] - a[1];
-        });
+            let final = korBr.slice(0, 5)
 
-        let final = korBr.slice(0, 5)
+            final.forEach(x => {
+                let sum = x[1]
+                let korisnici = x[0]
 
-        final.forEach(x => {
-            let sum = x[1]
-            console.log(sum)
+                if (korisnici != 'undefined') {
+                    let divS = document.createElement('div')
+                    divS.innerHTML = sum
+                    lista.appendChild(divS)
 
-            let divS = document.createElement('div')
-            divS.innerHTML = sum
-            lista.appendChild(divS)
-
-            let korisnici = x[0]
-            console.log(korisnici)
-
-            let divK = document.createElement('div')
-            divK.innerHTML = korisnici
-            lista.appendChild(divK)
+                    let divK = document.createElement('div')
+                    divK.innerHTML = korisnici
+                    lista.appendChild(divK)
+                }
+            })
         })
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+ispisHof()
 
 
 class Pojam {
@@ -218,6 +217,12 @@ datainput.addEventListener('submit', e => {
                                 pojam.innerHTML = fp;
                                 pojaminput.setAttribute('placeholder', 'Dodato')
                                 pojaminput.value = ''
+                                // refreshuj listu i azuriraj podatke
+                                if (lista.innerHTML.includes(name)) {
+                                    lista.innerHTML = ''
+                                    ispisHof();
+                                }
+
                             })
                             .catch(() => {
                                 console.log("pojam nije dodat")
@@ -246,7 +251,6 @@ datainput.addEventListener('submit', e => {
         kategorija.innerHTML = null;
     }
 })
-
 
 
 
