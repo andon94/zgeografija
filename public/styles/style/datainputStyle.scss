@@ -46,6 +46,7 @@ form{
     margin-right: 2.5rem;
 }
 
+
 /* ispis vrednosti inputa ispod hedera */
 .kat, .po {
     text-transform: uppercase;
@@ -77,13 +78,16 @@ form{
 /* kategorije */
 .menu div {
     display: grid;
-    grid-template-columns: 70% 30%;
-    /* text-align: center; */
+    grid-template-columns: 60% 40%;
     padding: 0.5rem 0;
     width: 30vw;
     margin: auto;
     letter-spacing: 2px;
     font-weight: bold;
+    label{
+        text-align: right;
+        margin-right: 2rem;
+    }
 }
 
 /* strelica */
