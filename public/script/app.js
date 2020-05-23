@@ -198,10 +198,10 @@ datainput.addEventListener('submit', e => {
     // ukoliko username nije prazan nastavi
     if (name != null) {
 
-        let regex = /[a-ŽA-Ž]/g;
-        let regexNum = fp.match(/\d+/g)
+        let regex = fp.match(/[^a-zđščžć]+/gi, '');
+        let regexNum = fp.match(/\s+/g, '');
         // ukoliko pojam odgovara regexu, kategorija nije prazna i pojam nije prazan, nastavi
-        if (fp.match(regex) && regexNum == null && inputKategorija != null && fp != '') {
+        if (regex == null && regexNum == null && inputKategorija != null && fp != '') {
 
             // proveri da li postoje duplikati
             pojam01.pojmovi
