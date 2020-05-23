@@ -18,3 +18,131 @@ h1 a{
     color: #333333;
     font-family: 'Black Ops One', cursive;
 }
+
+.none{
+    display: none;
+}
+
+nav{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    padding-top: 5%;
+}
+
+nav div{
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Black Ops One', cursive;
+    color: #444444;
+}
+
+/* slike u navbar-u */
+.img-div{
+    margin: auto;
+    transition: all .2s ease-in-out;
+}
+
+.img-div:hover{
+    transform: scale(1.2, 1.2);
+}
+
+.img{
+    margin-top: 5rem;
+    height: 11rem;
+}
+
+/* igra protiv kompjutera */
+.ipk-form{
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    padding-top: 3rem;
+}
+
+/* kategorija input */
+.kat-input div {
+    padding: 0.2rem 0;
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.kat-input div label{
+    margin: auto;
+    letter-spacing: 1px;
+}
+
+.kat-input div input{
+    padding: 0.8rem;
+    font-size: 1rem;
+    text-align: center;
+    width: 70%;
+}
+
+/* slika u centru */
+.img-nazad{
+    height: 300px;
+    transition: all .2s ease-in-out;
+}  
+
+.img-nazad:hover{
+    transform: scale(1.1, 1.1);
+}
+
+/* pocetno slovo i sat */
+.ps-sat{
+    margin: auto;
+}
+
+.ps, .sat{
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    letter-spacing: 1px;
+}
+
+.ps{
+    padding-bottom: 3rem;
+}
+
+.ps div, .sat div{
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgba(4, 147, 114, 1);
+    min-height: 3rem;
+    padding: 1rem 0;
+}
+
+
+
+.sat-sek{
+    display: inline-block;
+}
+
+.sekunda{
+    display: inline;
+    font-size: 1rem;
+    color: #333333;
+    display: inline-block;
+}
+
+button{
+    grid-column: 1 / 4;
+    margin: 3rem auto 0 auto;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: teal;
+    color: whitesmoke;
+    border-radius: 3px;
+}
