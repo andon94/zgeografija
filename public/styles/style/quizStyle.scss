@@ -131,7 +131,7 @@ nav div{
     font-size: 4rem;
     font-weight: bold;
     color: rgba(4, 147, 114, 1);
-    min-height: 3rem;
+    min-height: 5rem;
     padding: 1rem 0;
 }
 
@@ -148,7 +148,7 @@ nav div{
     display: inline-block;
 }
 
-button{
+button, .button{
     grid-column: 1 / 4;
     margin: 3rem auto 0 auto;
     border: none;
