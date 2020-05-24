@@ -6,6 +6,8 @@ let prijateljKviz = document.querySelector('#prijatelj-kviz')
 let ipk = document.querySelector('.ipk')
 let ipkForm = document.querySelector('.ipk-form')
 
+
+let caption = document.querySelector('.caption')
 let slovo = document.querySelector('#slovo')
 let sat = document.querySelector('.sat-sek')
 let start = document.querySelector('.button')
@@ -15,10 +17,10 @@ let drzavaInput = document.querySelector('#drzava')
 
 
 
-kompKviz.addEventListener('click', () => {
-    nav.classList.toggle('none')
-    ipk.classList.toggle('none')
-})
+// kompKviz.addEventListener('click', () => {
+//     nav.classList.toggle('none')
+//     ipk.classList.toggle('none')
+// })
 
 
 
@@ -38,7 +40,7 @@ let countdown = () => {
         if (counter == 0) {
             clearInterval(timer);
             sat.innerHTML = '0'
-            // ipkForm.submit()
+            ipkForm.submit()
         }
     }, 1000);
 }
@@ -59,7 +61,7 @@ let formatPojam = pojam => {
 let collection = db.collection('pojmovi');
 
 let pS = '';
-let tacniOdgovori = () => {
+let kviz = () => {
     collection
         .get()
         .then(snapshot => {
@@ -92,8 +94,16 @@ let tacniOdgovori = () => {
             })
 
             let drzava = drzave[randomIndex(drzave)]
-            pS = drzava[0]
+            if (drzava.slice(0, 2) === 'Nj' || drzava.slice(0, 2) === 'Lj' || drzava.slice(0, 2) === 'Dž') {
+                pS = drzava.slice(0, 2);
+            }
+            else {
+                pS = drzava.slice(0, 1);
+            }
             console.log(pS)
+
+
+
 
             nizNizova.forEach(niz => {
                 if (niz[0] == pS) {
@@ -172,11 +182,7 @@ let tacniOdgovori = () => {
             })
         })
 }
-tacniOdgovori()
-
-
-
-
+kviz()
 
 
 
@@ -188,6 +194,7 @@ start.addEventListener('click', () => {
     start.classList.toggle('none')
     button.classList.toggle('none')
     slovo.innerHTML = pS;
+    caption.innerHTML = null
 })
 
 

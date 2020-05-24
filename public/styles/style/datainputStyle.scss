@@ -28,22 +28,22 @@ form{
 
 /* brojevi pored header-a */
 .numbers{
-    height: 35px;
+    height: 2rem;
     display: inline;
     margin-right: 0.8rem;
     /* margin-top: 3; */
     position: relative;
-    top: 0.5rem;
+    top: 0.2rem;
 }
 
 /* hederi */
 .pojam label, .drop{
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    font-family: 'Black Ops One', cursive;
+    // font-family: 'Black Ops One', cursive;
     color: #444444;
     display: inline;
-    margin-right: 2.5rem;
+    margin-right: 2rem;
 }
 
 
@@ -74,6 +74,8 @@ form{
     width: fit-content;
     margin: auto;
 }
+
+
 
 /* kategorije */
 .menu div {
@@ -184,10 +186,15 @@ button {
     margin: 3rem auto 0 auto;
     border-radius: 3px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+
 }
 
 button:hover {
     background: rgb(1, 110, 110);
+    transform: scale(1.1, 1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 

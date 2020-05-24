@@ -45,6 +45,7 @@ nav div{
 //     transition: all .2s ease-in-out;
 // }
 
+
 .nav-el:hover{
     img{
     transform: scale(1.20, 1.20);
@@ -96,6 +97,10 @@ nav div{
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
+
+    border: none;
+    background: #ebe9e9;
+    // color: #333333;
 }
 
 /* slika u centru */
@@ -103,10 +108,22 @@ nav div{
     height: 200px;
     transition: all .2s ease-in-out;
     cursor: pointer;
+    padding-bottom: 3rem;
 }  
 
 .img-nazad:hover{
     transform: scale(1.1, 1.1);
+}
+
+.img-rez{
+    p{
+        line-height: 2rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        span{
+            color: teal;
+        }
+    }
 }
 
 /* pocetno slovo i sat */
@@ -118,13 +135,14 @@ nav div{
     font-size: 1.3rem;
     font-weight: bold;
     text-align: center;
-    margin: auto;
     letter-spacing: 1px;
 }
 
-.ps{
-    padding-bottom: 3rem;
-}
+// .ps{
+//     padding-bottom: 3rem;
+// }
+
+
 
 .ps div, .sat div{
     text-transform: uppercase;
@@ -137,16 +155,21 @@ nav div{
 
 
 
-.sat-sek{
-    display: inline-block;
-}
+// .sat-sek{
+//     display: inline-block;
+// }
 
 .sekunda{
     display: inline;
     font-size: 1rem;
     color: #333333;
     display: inline-block;
+    // box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    // opacity: 0;
+    // transition: opacity 0.3s ease-in-out;
 }
+
+
 
 button, .button{
     grid-column: 1 / 4;
@@ -158,6 +181,17 @@ button, .button{
     background-color: teal;
     color: whitesmoke;
     border-radius: 3px;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+
+
+}
+
+button:hover, .button:hover{
+    background: rgb(1, 110, 110);
+    transform: scale(1.1, 1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
 }
 
 
@@ -216,6 +250,10 @@ button, .button{
         grid-template-columns: 100%;
         grid-template-areas: 
         'slika' 'ps' 'kategorija';
+    }
+
+    .caption{
+        padding-bottom: 2rem;
     }
 
     .ps-sat{
