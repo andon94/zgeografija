@@ -218,10 +218,10 @@ datainput.addEventListener('submit', e => {
                                 pojaminput.setAttribute('placeholder', 'Dodato')
                                 pojaminput.value = ''
                                 // refreshuj listu i azuriraj podatke
-                                if (lista.innerHTML.includes(name)) {
-                                    lista.innerHTML = ''
-                                    ispisHof();
-                                }
+                                // if (lista.innerHTML.includes(name)) {
+                                //     lista.innerHTML = ''
+                                //     ispisHof();
+                                // }
 
                             })
                             .catch(() => {

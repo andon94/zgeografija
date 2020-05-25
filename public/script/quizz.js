@@ -2,10 +2,10 @@ let nav = document.querySelector('.nav')
 let kompKviz = document.querySelector('#komp-kviz')
 let prijateljKviz = document.querySelector('#prijatelj-kviz')
 
-
 let ipk = document.querySelector('.ipk')
 let ipkForm = document.querySelector('.ipk-form')
 
+let inputs = document.querySelectorAll('input')
 
 let caption = document.querySelector('.caption')
 let slovo = document.querySelector('#slovo')
@@ -14,6 +14,15 @@ let start = document.querySelector('.button')
 let button = document.querySelector('button')
 
 let drzavaInput = document.querySelector('#drzava')
+
+
+
+
+
+
+
+let collection = db.collection('pojmovi');
+
 
 
 
@@ -47,6 +56,8 @@ let countdown = () => {
 
 
 
+
+
 let formatPojam = pojam => {
     let inputPojam = pojam
     let formatPojam = inputPojam.split(" ").join("").toLowerCase();
@@ -54,135 +65,79 @@ let formatPojam = pojam => {
     return formatedPojam
 }
 
+let randomIndex = (x) => {
+    return Math.floor(Math.random() * x.length);
+}
 
 
 
 
-let collection = db.collection('pojmovi');
 
-let pS = '';
-let kviz = () => {
+
+
+let slova = ['A', 'B', 'S'];
+let pS = slova[randomIndex(slova)]
+let kategorije = ['Država', 'Grad', 'Reka', 'Planina', 'Životinja', 'Biljka', 'Predmet']
+
+let nizOdgovora = []
+let kviz = (cat) => {
     collection
+        .where('pocetnoslovo', '==', pS)
+        .where('kategorija', '==', cat)
         .get()
         .then(snapshot => {
             let nizPojmova = []
-            let nizKategorija = []
-
             snapshot.docs.forEach(doc => {
-                nizPojmova.push(doc.data().pojam)
-                nizKategorija.push(doc.data().kategorija)
+                nizPojmova.push(`${doc.data().pojam} ${cat}`)
             })
-
-            let randomIndex = (x) => {
-                return Math.floor(Math.random() * x.length);
-            }
-
-            let nizNizova = nizPojmova.map((e, i) => `${e} ${nizKategorija[i]}`);
-
-            let drzave = []
-            let gradovi = []
-            let reke = []
-            let planine = []
-            let zivotinje = []
-            let biljke = []
-            let predmeti = []
-
-            nizNizova.forEach(niz => {
-                if (niz.includes('Država')) {
-                    drzave.push(niz)
-                }
-            })
-
-            let drzava = drzave[randomIndex(drzave)]
-            if (drzava.slice(0, 2) === 'Nj' || drzava.slice(0, 2) === 'Lj' || drzava.slice(0, 2) === 'Dž') {
-                pS = drzava.slice(0, 2);
-            }
-            else {
-                pS = drzava.slice(0, 1);
-            }
-            console.log(pS)
-
-
-
-
-            nizNizova.forEach(niz => {
-                if (niz[0] == pS) {
-                    if (niz.includes('Grad')) {
-                        gradovi.push(niz)
-                    } else if (niz.includes('Reka')) {
-                        reke.push(niz)
-                    } else if (niz.includes('Planina')) {
-                        planine.push(niz)
-                    } else if (niz.includes('Životinja')) {
-                        zivotinje.push(niz)
-                    } else if (niz.includes('Biljka')) {
-                        biljke.push(niz)
-                    } else if (niz.includes('Predmet')) {
-                        predmeti.push(niz)
-                    }
-                }
-            })
-
-            let grad = gradovi[randomIndex(gradovi)]
-            let reka = reke[randomIndex(reke)]
-            let planina = planine[randomIndex(planine)]
-            let zivotinja = zivotinje[randomIndex(zivotinje)]
-            let biljka = biljke[randomIndex(biljke)]
-            let predmet = predmeti[randomIndex(predmeti)]
-
-
-
-
-            ipkForm.addEventListener('submit', e => {
-                e.preventDefault()
-
-                let drzavaK = ipkForm.elements[0].value
-                let gradK = ipkForm.elements[1].value
-                let rekaK = ipkForm.elements[2].value
-                let planinaK = ipkForm.elements[3].value
-                let zivotinjaK = ipkForm.elements[4].value
-                let biljkaK = ipkForm.elements[5].value
-                let predmetK = ipkForm.elements[6].value
-
-
-                let fDrzavaK = `${formatPojam(drzavaK)} Država`
-                let fGradK = `${formatPojam(gradK)} Grad`
-                let fRekaK = `${formatPojam(rekaK)} Reka`
-                let fPlaninaK = `${formatPojam(planinaK)} Planina`
-                let fŽivotinjaK = `${formatPojam(zivotinjaK)} Životinja`
-                let fBiljkaK = `${formatPojam(biljkaK)} Biljka`
-                let fPredmetK = `${formatPojam(predmetK)} Predmet`
-
-                console.log(fDrzavaK)
-
-                if (drzava == fDrzavaK) {
-                    console.log('idemoooooo')
-                }
-                if (grad == fGradK) {
-                    console.log('idemoooooo')
-                }
-                if (reka == fRekaK) {
-                    console.log('idemoooooo')
-                }
-                if (planina == fPlaninaK) {
-                    console.log('idemoooooo')
-                }
-                if (zivotinja == fZivotinjaK) {
-                    console.log('idemoooooo')
-                }
-                if (biljka == fBiljkaK) {
-                    console.log('idemoooooo')
-                }
-                if (predmet == fPredmetK) {
-                    console.log('idemoooooo')
-                }
-
-
-
-            })
+            let randomPojam = nizPojmova[randomIndex(nizPojmova)]
+            nizOdgovora.push(randomPojam)
         })
 }
-kviz()
+
+kategorije.forEach(cat => {
+    kviz(cat)
+})
+console.log(nizOdgovora)
+
+
+
+
+
+
+
+
+
+
+
+let usrOdgovori = []
+ipkForm.addEventListener('submit', e => {
+    e.preventDefault()
+    inputs.forEach(input => {
+        usrOdgovori.push(formatPojam(input.value))
+    })
+    usrOdgovori = usrOdgovori.map((e, i) => `${e} ${kategorije[i]}`)
+    console.log(usrOdgovori)
+
+
+
+
+
+
+
+
+    nizOdgovora.forEach((odgovor, i) => {
+        let usrOdgovor = usrOdgovori[i]
+        if (odgovor == usrOdgovor) {
+            console.log('bravo brate')
+        } else {
+            console.log("ne valja")
+        }
+    })
+})
+
+
+
 
 
 
@@ -196,7 +151,6 @@ start.addEventListener('click', () => {
     slovo.innerHTML = pS;
     caption.innerHTML = null
 })
-
 
 
 

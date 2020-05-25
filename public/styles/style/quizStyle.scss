@@ -151,6 +151,7 @@ nav div{
     color: rgba(4, 147, 114, 1);
     min-height: 5rem;
     padding: 1rem 0;
+    min-width: 6rem;
 }
 
 
@@ -159,20 +160,20 @@ nav div{
 //     display: inline-block;
 // }
 
-.sekunda{
-    display: inline;
-    font-size: 1rem;
-    color: #333333;
-    display: inline-block;
-    // box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    // opacity: 0;
-    // transition: opacity 0.3s ease-in-out;
-}
+// .sekunda{
+//     display: inline;
+//     font-size: 1rem;
+//     color: #333333;
+//     display: inline-block;
+//     // box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+//     // opacity: 0;
+//     // transition: opacity 0.3s ease-in-out;
+// }
 
 
 
 button, .button{
-    grid-column: 1 / 4;
+    grid-column: 2 / 3;
     margin: 3rem auto 0 auto;
     border: none;
     padding: 1rem 2rem;
@@ -246,10 +247,15 @@ button:hover, .button:hover{
         grid-area: ps
     }
 
+    .btnGrid{
+        grid-area: btn;
+        margin-bottom: 2rem;
+    }
+
     .ipk-form{
         grid-template-columns: 100%;
         grid-template-areas: 
-        'slika' 'ps' 'kategorija';
+        'slika' 'ps' 'kategorija' 'btn';
     }
 
     .caption{
