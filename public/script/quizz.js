@@ -80,7 +80,8 @@ let randomBotIndex = (x) => {
 
 
 
-let slova = ['S'];
+// let slova = ["A", "B", "C", "Č", "Ć", "D", "Dž", "Đ", "E", "F", "G", "H", "I", "J", "K", "L", "Lj", "M", "N", "Nj", "O", "P", "R", "S", "Š", "T", "U", "V", "Z", "Ž"];
+let slova = ['A', 'S', 'B']
 let pS = slova[randomIndex(slova)]
 let kategorije = ['Država', 'Grad', 'Reka', 'Planina', 'Životinja', 'Biljka', 'Predmet']
 
