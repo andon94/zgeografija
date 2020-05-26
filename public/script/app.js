@@ -18,15 +18,6 @@ const error = document.querySelector('.error')
 
 const button = document.querySelector('#button')
 
-// priveremeni selektori dok ne dodjem do boljeg resenja
-const one = document.querySelector('#one')
-const two = document.querySelector('#two')
-const three = document.querySelector('#three')
-const four = document.querySelector('#four')
-const five = document.querySelector('#five')
-
-
-
 let name = localStorage.getItem("usernameLS");
 usrnm.innerHTML = `Vaše korisničko ime je: ${name}`
 
@@ -222,7 +213,6 @@ datainput.addEventListener('submit', e => {
                                 //     lista.innerHTML = ''
                                 //     ispisHof();
                                 // }
-
                             })
                             .catch(() => {
                                 console.log("pojam nije dodat")
