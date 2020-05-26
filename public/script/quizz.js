@@ -26,21 +26,27 @@ let name = localStorage.getItem("usernameLS");
 
 
 
+// inputs.forEach(input => {
 
+// })
+
+inputs.forEach(input => {
+    input.setAttribute('disabled', 'true')
+})
 
 
 
 let countdown = () => {
     let timeleft = 1;
     let timer = setInterval(() => {
-        let counter = 5 - timeleft;
+        let counter = 90 - timeleft;
         timeleft += 1;
         sat.innerHTML = counter
 
         if (counter == 0) {
             clearInterval(timer);
             sat.innerHTML = '0'
-            // ipkForm.submit()
+            button.click()
         }
     }, 1000);
 
@@ -81,7 +87,7 @@ let randomBotIndex = (x) => {
 
 
 
-let slova = ['A', 'B', 'S'];
+let slova = ['S'];
 let pS = slova[randomIndex(slova)]
 let kategorije = ['Država', 'Grad', 'Reka', 'Planina', 'Životinja', 'Biljka', 'Predmet']
 
@@ -90,7 +96,7 @@ let glavniNiz = []
 
 let kviz = (kategorija) => {
     collection
-        .where('pocetnoslovo', '==', pS)
+        .where('pocetnoSlovo', '==', pS)
         .where('kategorija', '==', kategorija)
         .get()
         .then(snapshot => {
@@ -110,8 +116,8 @@ kategorije.forEach(kategorija => {
     kviz(kategorija)
 })
 
-console.log(nizBotOdgovora)
-console.log(glavniNiz)
+// console.log(nizBotOdgovora)
+// console.log(glavniNiz)
 let ur = 0
 let br = 0
 
@@ -211,7 +217,7 @@ let interval = setInterval(() => {
                 let inpt = inputs[i].value
                 if (inpt.includes('+ 0') == false && inpt.includes('+5') == false && inpt.includes('+10') == false && inpt.includes('+15') == false) {
                     inputs[i].style.color = 'red'
-                    inputs[i].value += ' +0'
+                    // inputs[i].value += ' +0'
                     console.log(inputs[i].value)
                 }
             }
@@ -244,16 +250,26 @@ start.addEventListener('click', () => {
     button.classList.toggle('none')
     slovo.innerHTML = pS;
     caption.innerHTML = null
+    inputs.forEach(input => {
+        if (name != null || name != '') {
+            input.removeAttribute('disabled')
+        }
+    })
+
+
+
 })
 
 button.addEventListener('click', () => {
     ni.classList.toggle('none')
     button.classList.toggle('none')
     slovoSat.innerHTML = ''
+    ipkForm.setAttribute('onkeydown', "return event.key != 'Enter'")
 })
 
 ni.addEventListener('click', () => {
     window.location.reload();
 })
+
 
 

@@ -148,7 +148,7 @@ class Pojam {
         let element = {
             kategorija: kategorija,
             korisnik: name,
-            pocetnoslovo: ps,
+            pocetnoSlovo: ps,
             pojam: pojam,
             vreme: firebase.firestore.Timestamp.fromDate(date)
         }
