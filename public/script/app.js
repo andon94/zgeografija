@@ -53,18 +53,25 @@ for (let i = 0; i < radioinput.length; i++) {
 
 // dropdown funkcionalnost liste kategorija
 
-let show = () => {
-    desc.classList.toggle('none')
-    menu.classList.toggle('none');
-    up.classList.toggle('none')
-}
+// let show = () => {
+//     desc.classList.toggle('none')
+//     menu.classList.toggle('none');
+//     up.classList.toggle('none')
+// }
 
-drop.addEventListener('click', () => {
-    show()
-})
+// drop.addEventListener('click', () => {
+//     show()
+// })
 
 desc.addEventListener('click', () => {
-    show()
+    desc.classList.add('animation')
+    up.style.display = 'none'
+    menu.classList.add('animation2')
+    setTimeout(() => {
+        desc.style.display = 'none'
+        up.style.display = 'none'
+        menu.style.display = 'block'
+    }, 300)
 })
 
 

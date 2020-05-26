@@ -59,8 +59,8 @@ form{
 }
 
 /* deo forme sa kategorijama */
-.kategorija p:hover{
-    cursor: pointer;
+.kategorija p{
+    cursor: default;
 }
 
 /* opis za pristup kategorijama */
@@ -234,6 +234,30 @@ button:hover {
     padding: 1rem 0;
 }  */
 
+
+@keyframes myAnimation{
+    0%   {opacity: 1}
+    100% {opacity: 0}
+}
+  
+.animation{
+    animation-name: myAnimation;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    transition-timing-function: ease-in-out;
+}
+
+@keyframes myAnimation2{
+    0%   {opacity: 0}
+    100% {opacity: 1}
+}
+  
+.animation2{
+    animation-name: myAnimation2;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    transition-timing-function: ease-in-out;
+}
 
 
 
