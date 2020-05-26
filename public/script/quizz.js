@@ -261,7 +261,10 @@ button.addEventListener('click', () => {
     button.classList.toggle('none')
     // onemoguci enter
     ipkForm.setAttribute('onkeydown', "return event.key != 'Enter'")
-    ni.classList.toggle('none')
+    setTimeout(() => {
+        ni.classList.toggle('none')
+    }, 300)
+
 })
 
 // refresuj stranicu i pocni novu partiju
