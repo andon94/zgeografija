@@ -161,6 +161,7 @@ let interval = setInterval(() => {
                 } else if (glavniNiz.includes(usrOdgovor) == false && glavniNiz.includes(botOdgovor) == false) {
                     console.log('nista')
                     slovoSat.innerHTML += `+nista<br>`
+                    inputKategorija.innerHTML += `+nista<br>`
                 }
             })
             // console.log(usrRezultat)
