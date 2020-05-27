@@ -8,6 +8,7 @@ let ipkForm = document.querySelector('.ipk-form')
 let inputKategorija = document.querySelector('.kat-input')
 let inputs = document.querySelectorAll('input')
 
+let olaf = document.querySelector('.olaf')
 let caption = document.querySelector('.caption')
 let slovoSat = document.querySelector('.ps-sat')
 let slovo = document.querySelector('#slovo')
@@ -25,6 +26,14 @@ let name = localStorage.getItem("usernameLS");
 inputs.forEach(input => {
     input.setAttribute('disabled', 'true')
 })
+
+let olafF = () => {
+    olaf.style.display = 'block'
+}
+
+let none = () => {
+    olaf.style.display = 'none'
+}
 
 let countdown = () => {
     let timeleft = 1;
@@ -80,7 +89,7 @@ let randomBotIndex = (x) => {
 
 
 
-// let slova = ["A", "B", "C", "Č", "Ć", "D", "Dž", "Đ", "E", "F", "G", "H", "I", "J", "K", "L", "Lj", "M", "N", "Nj", "O", "P", "R", "S", "Š", "T", "U", "V", "Z", "Ž"];
+// let slova = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "Lj", "M", "N", "Nj", "O", "P", "R", "S", "T", "U", "V", "Z", "Ž", "Č", "Ć", "Dž", "Đ", "Š"];
 let slova = ['A', 'S', 'B']
 let pS = slova[randomIndex(slova)]
 let kategorije = ['Država', 'Grad', 'Reka', 'Planina', 'Životinja', 'Biljka', 'Predmet']
@@ -136,7 +145,7 @@ let interval = setInterval(() => {
                 let usrRezultat = 0;
                 let botRezultat = 0;
                 slovoSat.classList.add('rezultat')
-                slovoSat.innerHTML = '<h3>Poeni Kompjutera</h3><br>'
+                slovoSat.innerHTML = '<h3>Olafovi poeni</h3><br>'
 
                 nizBotOdgovora.forEach((botOdgovor, i) => {
                     let usrOdgovor = usrOdgovori[i]
@@ -179,7 +188,7 @@ let interval = setInterval(() => {
                         slovoSat.innerHTML += `<p>${prvaRec(botOdgovor)} <span class="zeleno">+15</p></span></p><br>`
                         inputs.forEach((input) => {
                             if (input.value == '') {
-                                input.value += `+ 0`
+                                input.value += `nema pojma`
                                 input.style.color = 'red'
                             }
                         })
@@ -190,7 +199,7 @@ let interval = setInterval(() => {
                         slovoSat.innerHTML += `<p class='crveno'>nema pojma</p><br>`
                         inputs.forEach(input => {
                             if (input.value == '') {
-                                input.value += `+ 0`
+                                input.value += `nema pojma`
                                 input.style.color = 'red'
                             }
                         })
@@ -212,11 +221,16 @@ let interval = setInterval(() => {
 
                 // racunanje rezultata
                 if (usrRezultat > botRezultat) {
-                    caption.innerHTML = `<h3>Rezultat:</h3><p>Pobednik je ${name}: <span class="zeleno">${usrRezultat}</span><br>kompjuter: <span class="zeleno">${botRezultat}</span></p>`
+                    caption.innerHTML = `<h3>Rezultat:</h3><p>Pobednik je ${name}: <span class="zeleno">${usrRezultat}</span><br>Olaf: <span class="zeleno">${botRezultat}</span></p>`
+                    olaf.innerHTML = 'tøgr!'
+                    olaf.style.display = 'block'
+                    myMove()
                 } else if (botRezultat > usrRezultat) {
-                    caption.innerHTML = `<h3>Rezultat:</h3><p>${name}: <span class="zeleno">${usrRezultat}</span><br>Pobednik je kompjuter: <span class="zeleno">${botRezultat}</span></p>`
+                    caption.innerHTML = `<h3>Rezultat:</h3><p>${name}: <span class="zeleno">${usrRezultat}</span><br>Pobednik je Olaf: <span class="zeleno">${botRezultat}</span></p>`
+                    olaf.innerHTML = 'HAAAAHAAAAHAHAHA!!!'
+                    olaf.style.display = 'block'
                 } else {
-                    caption.innerHTML = `<h3>Rezultat:</h3><p>Nerešeno</p><p>${name}: <span class="zeleno">${usrRezultat}</span><br>kompjuter: <span class="zeleno">${botRezultat}</span></p>`
+                    caption.innerHTML = `<h3>Rezultat:</h3><p>Nerešeno</p><p>${name}: <span class="zeleno">${usrRezultat}</span><br>Olaf: <span class="zeleno">${botRezultat}</span></p>`
                 }
                 caption.classList.add('rezultat')
                 button.classList.add('none')
@@ -240,6 +254,8 @@ start.addEventListener('click', () => {
     izgubiSe(caption)
     start.classList.toggle('none')
     button.classList.toggle('none')
+    // myMove()
+
     // timeout zbog animacija
     setTimeout(() => {
         caption.classList.remove('animation3')
@@ -250,6 +266,7 @@ start.addEventListener('click', () => {
         inputs.forEach(input => {
             if (name != null || name != '') {
                 input.removeAttribute('disabled')
+                input.style.textTransform = 'lowercase'
             }
         })
     }, 300)

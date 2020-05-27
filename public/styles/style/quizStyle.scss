@@ -5,6 +5,10 @@
     cursor: default;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 h1{
     text-align: center;
     padding-top: 1rem;
@@ -113,6 +117,8 @@ nav div{
     padding-bottom: 3rem;
 }  
 
+
+
 .img-nazad:hover{
     transform: scale(1.1, 1.1);
 }
@@ -127,6 +133,17 @@ nav div{
         }
     }
 }
+
+.olaf{
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 52%;
+    font-weight: bold;
+    z-index: 2;
+}
+
+
 
 /* pocetno slovo i sat */
 .ps-sat{
@@ -286,6 +303,7 @@ button:hover, .button:hover{
             }
         }
     }
+
 
     .img-rez{
         grid-area: slika;
