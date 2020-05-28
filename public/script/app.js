@@ -128,7 +128,14 @@ let ispisHof = () => {
             console.log(error);
         });
 }
-ispisHof()
+
+imgtext.addEventListener('click', (e) => {
+    imgtext.classList.toggle('none')
+    lista.style.paddingTop = '5rem'
+
+    ispisHof()
+
+})
 
 
 class Pojam {

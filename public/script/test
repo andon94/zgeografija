@@ -1,0 +1,115 @@
+
+
+// function getRandomArbitrary(min, max) {
+//     let rez = Math.floor(Math.random() * (max - min) + min);
+//     rez = ('0' + rez).slice(-2)
+//     return rez
+// }
+
+// let randomDan = getRandomArbitrary(26, 27)
+// let randomSat = getRandomArbitrary(0, 12)
+// let randomMinut = getRandomArbitrary(0, 60)
+// console.log(randomSat)
+// console.log(randomDan)
+// console.log(randomMinut)
+
+
+// let stringDatuma = `2020-05-26T06:11:12`
+// String.prototype.replaceAt = function (index, replacement) {
+//     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+// }
+
+// // let spremanDan = stringDatuma.replaceAt(8, randomDan)
+// let spremanSat = stringDatuma.replaceAt(11, randomSat)
+// let spremanMinut = spremanSat.replaceAt(14, randomMinut)
+
+
+
+
+// const firstDay = new Date(spremanMinut);
+// console.log(firstDay)
+// const timestamp1 = firebase.firestore.Timestamp.fromDate(firstDay);
+
+// const now = new Date();
+// const timestamp2 = firebase.firestore.Timestamp.fromDate(now);
+// console.log(now)
+
+
+
+
+
+
+
+// let key = collection.doc().id;
+// collection
+//     // .where('kategorija', '==', kategorija)
+//     .where(firebase.firestore.FieldPath.documentId(), '>=', key)
+//     .limit(1)
+//     .get()
+//     .then(snapshot => {
+//         if (snapshot.size > 0) {
+//             snapshot.forEach(doc => {
+//                 console.log(doc.id, '=>', doc.data());
+//             });
+//         }
+//         else {
+//             collection
+//                 .where(admin.firestore.FieldPath.documentId(), '<', key)
+//                 .limit(1)
+//                 .get()
+//                 .then(snapshot => {
+//                     snapshot.forEach(doc => {
+//                         console.log(doc.id, '=>', doc.data());
+//                     });
+//                 })
+//         }
+//     })
+
+
+
+
+
+    // db.collection('pojmovi')
+    //     .where('kategorija', '==', kategorija)
+    //     .where('pocetnoSlovo', '==', 'A')
+    //     // .where('vreme', '>', timestamp1)
+    //     // .where('vreme', '<', timestamp2)
+    //     .limit(1)
+    //     .get()
+    //     .then(snapshot => {
+
+    //         let nizPojmova = []
+    //         snapshot.docs.forEach(doc => {
+
+    //             // let sekunde = doc.data().vreme.seconds
+    //             let id = doc.id
+    //             console.log(id)
+
+    //             // sekundeString = sekunde.toString()
+    //             // // console.log(sekundeString)
+    //             // let pk = sekundeString.charAt(sekundeString.length - 1)
+    //             // // console.log(pk)
+    //             // let randomBr = Math.floor(Math.random() * 10)
+    //             // console.log(randomBr)
+    //             // if (pk == randomBr) {
+    //             nizPojmova.push(`${doc.data().pojam} ${kategorija}`)
+    //             glavniNiz.push(`${doc.data().pojam} ${kategorija}`)
+    //             //     console.log('ima')
+    //             // } else {
+    //             //     console.log('nema')
+    //             // }
+    //             // console.log(sekunde)
+    //         })
+
+    //         let botovPojam = nizPojmova[randomBotIndex(nizPojmova)]
+    //         nizBotOdgovora.push(botovPojam)
+    //     })
+
+
+
+// console.log(id)
+// console.log(nizBotOdgovora)
+// console.log(glavniNiz)
+
+    // console.log(usrPojam)
+    // console.log(usrKategorija)

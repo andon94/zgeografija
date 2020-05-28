@@ -135,12 +135,12 @@ nav div{
 }
 
 .olaf{
-    display: none;
-    position: absolute;
-    top: 20%;
-    left: 52%;
+    margin-top: -2rem;
+    padding-bottom: 1rem;
+    min-height: 2rem;
     font-weight: bold;
     z-index: 2;
+    visibility: visible;
 }
 
 
@@ -148,6 +148,7 @@ nav div{
 /* pocetno slovo i sat */
 .ps-sat{
     margin: auto;
+    min-height: 21rem;
 }
 
 .ps, .sat{
@@ -210,9 +211,22 @@ nav div{
     transition-timing-function: ease-in-out;
 }
 
+@keyframes myAnimation4{
+    0%   {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 1}
+}
+  
+.animation4{
+    animation-name: myAnimation4;
+    animation-duration: 2000ms;
+    // animation-fill-mode: forwards;
+    transition-timing-function: ease-in-out;
+}
+
 .animation2{
     animation-name: myAnimation2;
-    animation-duration: 550ms;
+    animation-duration: 1300ms;
     // animation-fill-mode: forwards;
     transition-timing-function: ease-in-out;
 }
