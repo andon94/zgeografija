@@ -97,21 +97,145 @@ let kategorije = ['Država', 'Grad', 'Reka', 'Planina', 'Životinja', 'Biljka', 
 let nizBotOdgovora = []
 let glavniNiz = []
 
+
+
+
+
+
+
+// function getRandomArbitrary(min, max) {
+//     let rez = Math.floor(Math.random() * (max - min) + min);
+//     rez = ('0' + rez).slice(-2)
+//     return rez
+// }
+
+// let randomDan = getRandomArbitrary(26, 27)
+// let randomSat = getRandomArbitrary(0, 12)
+// let randomMinut = getRandomArbitrary(0, 60)
+// console.log(randomSat)
+// console.log(randomDan)
+// console.log(randomMinut)
+
+
+// let stringDatuma = `2020-05-26T06:11:12`
+// String.prototype.replaceAt = function (index, replacement) {
+//     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+// }
+
+// // let spremanDan = stringDatuma.replaceAt(8, randomDan)
+// let spremanSat = stringDatuma.replaceAt(11, randomSat)
+// let spremanMinut = spremanSat.replaceAt(14, randomMinut)
+
+
+
+
+// const firstDay = new Date(spremanMinut);
+// console.log(firstDay)
+// const timestamp1 = firebase.firestore.Timestamp.fromDate(firstDay);
+
+// const now = new Date();
+// const timestamp2 = firebase.firestore.Timestamp.fromDate(now);
+// console.log(now)
+
+
+
+
+
+
+
+// let key = collection.doc().id;
+// collection
+//     // .where('kategorija', '==', kategorija)
+//     .where(firebase.firestore.FieldPath.documentId(), '>=', key)
+//     .limit(1)
+//     .get()
+//     .then(snapshot => {
+//         if (snapshot.size > 0) {
+//             snapshot.forEach(doc => {
+//                 console.log(doc.id, '=>', doc.data());
+//             });
+//         }
+//         else {
+//             collection
+//                 .where(admin.firestore.FieldPath.documentId(), '<', key)
+//                 .limit(1)
+//                 .get()
+//                 .then(snapshot => {
+//                     snapshot.forEach(doc => {
+//                         console.log(doc.id, '=>', doc.data());
+//                     });
+//                 })
+//         }
+//     })
+
+let nizPojmova = []
+
+
 let kviz = (kategorija) => {
+
+    // db.collection('pojmovi')
+    //     .where('kategorija', '==', kategorija)
+    //     .where('pocetnoSlovo', '==', 'A')
+    //     // .where('vreme', '>', timestamp1)
+    //     // .where('vreme', '<', timestamp2)
+    //     .limit(1)
+    //     .get()
+    //     .then(snapshot => {
+
+    //         let nizPojmova = []
+    //         snapshot.docs.forEach(doc => {
+
+    //             // let sekunde = doc.data().vreme.seconds
+    //             let id = doc.id
+    //             console.log(id)
+
+    //             // sekundeString = sekunde.toString()
+    //             // // console.log(sekundeString)
+    //             // let pk = sekundeString.charAt(sekundeString.length - 1)
+    //             // // console.log(pk)
+    //             // let randomBr = Math.floor(Math.random() * 10)
+    //             // console.log(randomBr)
+    //             // if (pk == randomBr) {
+    //             nizPojmova.push(`${doc.data().pojam} ${kategorija}`)
+    //             glavniNiz.push(`${doc.data().pojam} ${kategorija}`)
+    //             //     console.log('ima')
+    //             // } else {
+    //             //     console.log('nema')
+    //             // }
+    //             // console.log(sekunde)
+    //         })
+
+    //         let botovPojam = nizPojmova[randomBotIndex(nizPojmova)]
+    //         nizBotOdgovora.push(botovPojam)
+    //     })
+
+    let key = collection.doc().id;
     collection
-        .where('pocetnoSlovo', '==', pS)
         .where('kategorija', '==', kategorija)
+        .where('pocetnoSlovo', '==', 'A')
+        .where(firebase.firestore.FieldPath.documentId(), '>=', key)
+        .limit(1)
         .get()
         .then(snapshot => {
+            if (snapshot.size > 0) {
 
-            let nizPojmova = []
-            snapshot.docs.forEach(doc => {
-                nizPojmova.push(`${doc.data().pojam} ${kategorija}`)
-                glavniNiz.push(`${doc.data().pojam} ${kategorija}`)
-            })
-
-            let botovPojam = nizPojmova[randomBotIndex(nizPojmova)]
-            nizBotOdgovora.push(botovPojam)
+                snapshot.forEach(doc => {
+                    nizPojmova.push(`${doc.data().pojam} ${kategorija}`)
+                    console.log(doc.data().pojam);
+                });
+            }
+            else {
+                collection
+                    .where(firebase.firestore.FieldPath.documentId(), '<', key)
+                    .limit(1)
+                    .get()
+                    .then(snapshot => {
+                        snapshot.forEach(doc => {
+                            nizPojmova.push(`${doc.data().pojam} ${kategorija}`)
+                            console.log(doc.data().pojam);
+                        });
+                    })
+            }
         })
 }
 // prolazim kroz sve kategorije da bi se popunio niz pojmova 
@@ -119,15 +243,42 @@ kategorije.forEach(kategorija => {
     kviz(kategorija)
 })
 
+// console.log(id)
 // console.log(nizBotOdgovora)
 // console.log(glavniNiz)
+console.log(nizPojmova)
+nizBotOdgovora = nizPojmova
+console.log(nizBotOdgovora)
+
+
+// console.log(vremena)
+
+let upit = usrOdgovor => {
+
+    let usrPojam = prvaRec(usrOdgovor)
+    let usrKategorija = drugaRec(usrOdgovor)
+
+    collection
+        .where('pojam', '==', usrPojam)
+        .where('pojam', '==', usrKategorija)
+        .get()
+        .then(snapshot => {
+            if (snapshot.exists) {
+                return true
+            } else {
+                return false
+            }
+        })
+
+}
+
 
 // ceka da se nizovi popune podacima sa servera
 // interval se ponavlja sve dok niz botovim odgovora ne bude imao7 elementa
 let interval = setInterval(() => {
-    if (nizBotOdgovora.length != 7) {
+    if (nizPojmova.length != 7) {
         console.log('Wait')
-    } else if (nizBotOdgovora.length == 7) {
+    } else if (nizPojmova.length == 7) {
         console.log('Ready')
         clearInterval(interval)
 
@@ -149,8 +300,12 @@ let interval = setInterval(() => {
 
                 nizBotOdgovora.forEach((botOdgovor, i) => {
                     let usrOdgovor = usrOdgovori[i]
+                    let odg = upit(usrOdgovor)
+                    console.log(odg)
                     // ako glavni niz sadrzi odgovor moj ili robotov...
-                    if (glavniNiz.includes(usrOdgovor) && usrOdgovor == botOdgovor) {
+                    // if (glavniNiz.includes(usrOdgovor) && usrOdgovor == botOdgovor) {
+                    if (odg && usrOdgovor == botOdgovor) {
+
                         usrRezultat = usrRezultat + 5;
                         botRezultat = botRezultat + 5;
 
@@ -161,7 +316,9 @@ let interval = setInterval(() => {
                             }
                         })
                         console.log(1)
-                    } else if (glavniNiz.includes(usrOdgovor) && usrOdgovor != botOdgovor && glavniNiz.includes(botOdgovor)) {
+                        // } else if (glavniNiz.includes(usrOdgovor) && usrOdgovor != botOdgovor && glavniNiz.includes(botOdgovor)) {
+                    } else if (odg && usrOdgovor != botOdgovor && glavniNiz.includes(botOdgovor)) {
+
                         usrRezultat = usrRezultat + 10;
                         botRezultat = botRezultat + 10;
 
@@ -172,7 +329,7 @@ let interval = setInterval(() => {
                             }
                         })
                         console.log(2)
-                    } else if (glavniNiz.includes(usrOdgovor) && glavniNiz.includes(botOdgovor) == false) {
+                    } else if (odg && glavniNiz.includes(botOdgovor) == false) {
                         usrRezultat = usrRezultat + 15;
 
                         slovoSat.innerHTML += `<p class='crveno'>nema pojma</p><br>`
@@ -182,7 +339,7 @@ let interval = setInterval(() => {
                             }
                         })
                         console.log(3)
-                    } else if (glavniNiz.includes(usrOdgovor) == false && glavniNiz.includes(botOdgovor)) {
+                    } else if (odg == false && glavniNiz.includes(botOdgovor)) {
                         botRezultat = botRezultat + 15;
 
                         slovoSat.innerHTML += `<p>${prvaRec(botOdgovor)} <span class="zeleno">+15</p></span></p><br>`
@@ -193,7 +350,7 @@ let interval = setInterval(() => {
                             }
                         })
                         console.log(4)
-                    } else if (glavniNiz.includes(usrOdgovor) == false && glavniNiz.includes(botOdgovor) == false) {
+                    } else if (odg == false && glavniNiz.includes(botOdgovor) == false) {
                         console.log('nista')
 
                         slovoSat.innerHTML += `<p class='crveno'>nema pojma</p><br>`
