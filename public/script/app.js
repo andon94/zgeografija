@@ -128,13 +128,13 @@ let ispisHof = () => {
             console.log(error);
         });
 }
-
+let br = 0;
 imgtext.addEventListener('click', (e) => {
-    imgtext.classList.toggle('none')
-    lista.style.paddingTop = '5rem'
-
-    ispisHof()
-
+    // imgtext.classList.toggle('none')
+    if (br < 1) {
+        ispisHof()
+    }
+    br++
 })
 
 
@@ -255,8 +255,3 @@ datainput.addEventListener('submit', e => {
         kategorija.innerHTML = null;
     }
 })
-
-
-
-
-

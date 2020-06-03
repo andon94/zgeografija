@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/css/quizVsStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>Zanimljiva Geografija</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1><a href="./index.html">ZANIMLJIVA GEOGRAFIJA</a></h1>
+        <div class="ipk">
+            <form class="ipk-form">
+
+                <div class="kat-input">
+                    <div>
+                        <label>DRŽAVA</label>
+                        <input type="text" id="Država" name="kategorija" value="" autocomplete="off" class="input">
+                    </div>
+
+                    <div>
+                        <label>GRAD</label>
+                        <input type="text" id="Grad" name="kategorija" autocomplete="off" class="input">
+                    </div>
+
+                    <div>
+                        <label>REKA</label>
+                        <input type="text" id="Reka" name="kategorija" autocomplete="off" class="input">
+                    </div>
+
+                    <div>
+                        <label>PLANINA</label>
+                        <input type="text" id="Planina" name="kategorija" autocomplete="off" class="input">
+                    </div>
+
+                    <div>
+                        <label>ŽIVOTINJA</label>
+                        <input type="text" id="Životinja" name="kategorija" autocomplete="off" class="input">
+                    </div>
+
+                    <div>
+                        <label>BILJKA</label>
+                        <input type="text" id="Biljka" name="kategorija" autocomplete="off" class="input">
+                    </div>
+
+                    <div>
+                        <label>PREDMET</label>
+                        <input type="text" id="Predmet" name="kategorija" autocomplete="off" class="input">
+                    </div>
+                </div>
+
+                <button class=" btnGrid" type="submit">Pošalji</button>
+            </form>
+
+            <div class="chat-events">
+                <ul id="events"></ul>
+                <form action="" class="chat-form">
+                    <input type="text" id="chat" autocomplete="off">
+                    <button type="submit">Pošalji</button>
+                </form>
+
+            </div>
+
+            <div class="rezultat"></div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!-- <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCiYRBfXZSEImfV9uqwhqK_8oDP18WTMts",
+            authDomain: "zgeografija-6db02.firebaseapp.com",
+            databaseURL: "https://zgeografija-6db02.firebaseio.com",
+            projectId: "zgeografija-6db02",
+            storageBucket: "zgeografija-6db02.appspot.com",
+            messagingSenderId: "378635864704",
+            appId: "1:378635864704:web:a5df44ec282359260e3465",
+            measurementId: "G-SW0L7YNFXL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore()
+    </script> -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBLKZBbApvlDiKxsiiWcXUVtIO8jIxKFUY",
+            authDomain: "zgeografija-906fc.firebaseapp.com",
+            databaseURL: "https://zgeografija-906fc.firebaseio.com",
+            projectId: "zgeografija-906fc",
+            storageBucket: "zgeografija-906fc.appspot.com",
+            messagingSenderId: "398181599037",
+            appId: "1:398181599037:web:1b46b4de7afe57560be754"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let db = firebase.firestore();
+    </script>
+    <!-- <script type="text/javascript" src="app.js" charset="utf-8"></script> -->
+    <script type="text/javascript" src="./script/quizzVs.js" charset="utf-8"></script>
+</body>
+
+
+
+</html>

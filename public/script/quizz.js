@@ -54,7 +54,7 @@ let countdown = () => {
         setTimeout(() => {
             clearInterval(timer)
             sat.innerHTML = ''
-        }, 300)
+        }, 600)
     })
 }
 
@@ -142,6 +142,7 @@ let upit = usrOdgovor => {
     let usrKategorija = drugaRec(usrOdgovor)
 
     collection
+        .where('pocetnoSlovo', '==', pS)
         .where('pojam', '==', usrPojam)
         .where('kategorija', '==', usrKategorija)
         .get()
@@ -311,8 +312,8 @@ let interval = setInterval(() => {
                             caption.innerHTML = `<h3>Rezultat:</h3><p>Nerešeno</p><p>${name}: <span class="zeleno">${usrRezultat}</span><br>Olaf: <span class="zeleno">${botRezultat}</span></p>`
                         }
                         caption.classList.add('rezultat')
-                        button.classList.add('none')
-                        start.classList.add('none')
+                        // button.classList.add('none')
+                        // start.classList.add('none')
                     }, 1000)
                 })
 
@@ -350,48 +351,68 @@ let izgubiSePojaviSe = x => {
     }, 250)
 }
 
-// prvo dugme koje se pritiska da bi se dozvolio unos podataka i da bi se pojavilo form button nakon njega
-start.addEventListener('click', () => {
-    slovo.classList.add('animation')
-    izgubiSe(caption)
-    start.classList.toggle('none')
-    button.classList.toggle('none')
+if (name != null && name != '') {
 
-    // timeout zbog animacija
-    setTimeout(() => {
-        caption.classList.remove('animation3')
-        sat.innerHTML = '45';
-        countdown()
-        slovo.innerHTML = pS;
-        // ukoliko nema username=a nemoj da dozvolis input cak ni nakon klika na duge start
-        inputs.forEach(input => {
-            if (name != null || name != '') {
-                input.removeAttribute('disabled')
-                input.style.textTransform = 'lowercase'
-            }
-        })
-    }, 300)
-})
+    // prvo dugme koje se pritiska da bi se dozvolio unos podataka i da bi se pojavilo form button nakon njega
+    start.addEventListener('click', () => {
+        slovo.classList.add('animation')
+        izgubiSe(caption)
+        start.classList.toggle('none')
+        button.classList.toggle('none')
 
-// glavno dugme
-button.addEventListener('click', () => {
+        // timeout zbog animacija
+        setTimeout(() => {
+            caption.classList.remove('animation')
+            sat.innerHTML = '45';
+            countdown()
+            slovo.innerHTML = pS;
+            // ukoliko nema username=a nemoj da dozvolis input cak ni nakon klika na duge start
+            inputs.forEach(input => {
+                if (name != null || name != '') {
+                    input.removeAttribute('disabled')
+                    input.style.textTransform = 'lowercase'
+                }
+            })
+        }, 300)
+    })
 
-    izgubiSe(slovoSat)
+    // glavno dugme
+    button.addEventListener('click', () => {
+        izgubiSe(slovoSat)
+        izgubiSe(button)
+        setTimeout(() => {
+            button.classList.toggle('none')
+        }, 300)
 
-    caption.classList.add('animation4')
-    button.classList.toggle('none')
-    // onemoguci enter
-    ipkForm.setAttribute('onkeydown', "return event.key != 'Enter'")
-    setTimeout(() => {
-        ni.classList.toggle('none')
-    }, 300)
+        caption.classList.add('animation4')
 
-})
+        // onemoguci enter
+        ipkForm.setAttribute('onkeydown', "return event.key != 'Enter'")
+        setTimeout(() => {
+            ni.classList.toggle('none')
+        }, 700)
 
-// refresuj stranicu i pocni novu partiju
-ni.addEventListener('click', () => {
-    window.location.reload();
-})
+    })
+
+    // refresuj stranicu i pocni novu partiju
+    ni.addEventListener('click', () => {
+        window.location.reload();
+    })
+
+} else {
+    let br = 0
+    start.addEventListener('click', () => {
+        if (br < 1) {
+            let upozorenje = document.createElement('div')
+            upozorenje.innerHTML = 'Unesi Korisničko Ime'
+            upozorenje.style.marginTop = '2rem'
+            upozorenje.style.color = 'red'
+
+            caption.appendChild(upozorenje)
+        }
+        br++
+    })
+}
 
 
 
