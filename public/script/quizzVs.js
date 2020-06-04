@@ -15,6 +15,7 @@ let button = document.querySelector('.button')
 let rezultat = document.querySelector('.rezultat')
 
 let collection = db.collection('pojmovi');
+let colRez = db.collection('rezultati')
 let name = localStorage.getItem("usernameLS");
 
 const parent = document.querySelector('#events')
@@ -27,6 +28,61 @@ let slovo = document.querySelector('#slovo')
 let info = document.querySelector('.info')
 
 let usr = document.querySelector('.usr')
+let ni = document.querySelector('#ni')
+
+let lista = document.querySelector('.lista')
+
+
+
+
+
+colRez
+    .orderBy('broj_poena', 'desc')
+    .limit(3)
+    .get()
+    .then(snapshot => {
+        console.log(snapshot.docs.length)
+        // ako nema takvog dokumenta, dodaj ga u bazu
+        snapshot.forEach(doc => {
+            console.log(doc.data().username)
+            lista.innerHTML += `<div class="list-el">${doc.data().username} ${doc.data().broj_poena}</div>`
+        })
+    })
+
+
+
+
+
+
+class Usr {
+
+    constructor(usr) {
+        this._username = usr;
+        // this._broj_poena = brP
+        this.rezultati = db.collection('rezultati')
+    }
+
+    async dodajPojam(usr, brP) {
+
+
+        let date = new Date();
+        let brIgara = 0
+        brIgara++
+        let brPoena = 0
+        brPoena = brPoena + brP
+
+        let element = {
+            username: usr,
+            broj_igara: brIgara,
+            broj_poena: brPoena,
+            datum: firebase.firestore.Timestamp.fromDate(date)
+        }
+
+        let response = await this.rezultati.add(element);
+        return response;
+    }
+
+}
 
 
 button.disabled = true
@@ -39,6 +95,10 @@ usrName.style.color = 'teal'
 usr.style.marginTop = '1rem'
 usr.style.fontWeight = 'bold'
 usr.style.letterSpacing = '1px'
+
+ni.addEventListener('click', () => {
+    window.location.reload();
+})
 
 
 
@@ -62,6 +122,7 @@ let prvaRec = string => {
 
 
 let wait = null
+
 const usrInputsSubmited = (e) => {
     e.preventDefault()
     let ukupno = []
@@ -125,6 +186,12 @@ const usrInputsSubmited = (e) => {
             sock.emit('username', name)
 
             clearInterval(interval)
+            ni.classList.remove('none')
+
+
+
+
+
         }
     }, 500)
 
@@ -191,10 +258,7 @@ const writeEvent = (text) => {
 };
 
 const writeInfo = text => {
-    // const el = document.createElement('div')
-    // el.classList.add('info-el')
     info.innerHTML = text;
-    // info.appendChild(el)
 }
 
 const writeSlovo = text => {
@@ -207,13 +271,6 @@ const writeRezultat = (text) => {
     el.innerHTML = `${text}`;
     chatBox.appendChild(el)
 };
-
-// const writeUsr = (text) => {
-//     const el = document.createElement('div')
-//     el.classList.add('rez-kraj')
-//     el.innerHTML = text;
-//     chatBox.appendChild(el)
-// };
 
 const writeInput = (text) => {
     const el = document.createElement('div')
@@ -240,6 +297,51 @@ const writeSelf = text => {
     }
 }
 
+const writeHelp = text => {
+    const el = document.createElement('div')
+    el.classList.add('helper')
+    el.style.visibility = 'hidden'
+    el.innerHTML += text;
+    ipkForm.appendChild(el)
+
+
+    let player0 = new Usr(name)
+
+    player0.rezultati
+        .where('username', '==', name)
+        .get()
+        .then(snapshot => {
+            console.log(snapshot.docs.length)
+            // ako nema takvog dokumenta, dodaj ga u bazu
+            if (snapshot.docs.length == 0) {
+                let brPn = text
+                let brPr = 1
+
+                player0.dodajPojam(name, brPn, brPr)
+                    .then(() => {
+                        console.log("Pojam uspešno dodat")
+                    })
+                    .catch(() => {
+                        console.log("pojam nije dodat")
+                    })
+            } else {
+                let date = new Date()
+
+                snapshot.forEach(doc => {
+                    // if (text == 0) {
+                    //     db.collection("rezultati").doc(doc.id).update({ broj_igara: firebase.firestore.FieldValue.increment(1), datum: firebase.firestore.Timestamp.fromDate(date) });
+                    //     console.log("Pojam apdejtovan")
+                    // } else {
+                    let br = parseInt(text)
+                    db.collection("rezultati").doc(doc.id).update({ broj_poena: firebase.firestore.FieldValue.increment(br), broj_igara: firebase.firestore.FieldValue.increment(1), datum: firebase.firestore.Timestamp.fromDate(date) });
+                    console.log("Pojam apdejtovan")
+                    // }
+
+                });
+            }
+        })
+}
+
 // salje na server poruku iz chatInput-a pa resetuje input
 const onFormSubmited = (e) => {
     e.preventDefault()
@@ -263,8 +365,9 @@ sock.on('countdown', writeCountdown)
 sock.on('message', writeEvent)
 sock.on('form', writeInput)
 sock.on('self', writeSelf)
+sock.on('help', writeHelp)
 sock.on('rezultat', writeRezultat)
-
+// sock.on('help', writeHelp)
 
 // event listneri za forme
 // dva ideneticna slucaja
@@ -277,6 +380,10 @@ ipkForm.addEventListener('submit', usrInputsSubmited)
 
 
 
+
+
+
+// player0.dodajPojam(name, 20)
 
 
 
