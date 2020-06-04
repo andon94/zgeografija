@@ -2,7 +2,7 @@ class Game {
     constructor(p1, p2) {
         this._players = [p1, p2];
         this._turns = [null, null]
-
+        this._usrNames = [null, null]
 
         this._sendCountdownGame()
 
@@ -10,7 +10,7 @@ class Game {
         setTimeout(() => {
             this._sendInfo('Igra je počela')
             this._sendCountdown()
-        }, 7000)
+        }, 5000)
 
         this._skupa = []
 
@@ -18,7 +18,26 @@ class Game {
             player.on('turn', (turn) => {
                 this._onTurn(idx, turn)
             })
+
+            player.on('username', (name) => {
+                this._usrNames[idx] = name;
+            })
         })
+
+        // this._players.forEach((player, idx) => {
+        //     // player.on('turn', (turn) => {
+        //     //     this._turns[playerIndex] = turn;
+        //     player.on('username', (name) => {
+        //         this._usrNames[idx] = name;
+        //     })
+        //     // })
+        // })
+
+        // this._usrNames.forEach((usrname, idx) => {
+        //     usrname.on('username', (name) => {
+        //         this._usrNames[idx] = name;
+        //     })
+        // })
     }
 
     _sendInfo(msg) {
@@ -72,7 +91,7 @@ class Game {
         const turns = this._turns;
 
         if (turns[0] && turns[1]) {
-            this._sendInfo('Igra je gotova.')
+            this._sendInfo('Igra je gotova')
             this._getResults()
             this._turns = [null, null]
         }
@@ -148,17 +167,38 @@ class Game {
         this._sendToAll(`${poeniPrvi} : ${poeniDrugi}`)
         // this._sendToAll(poeniDrugi)
 
-        if (poeniPrvi > poeniDrugi) {
-            this._sendToAll(`Prvi je pobedio.`)
-        }
+        // setTimeout(() => {
+        //     if (poeniPrvi > poeniDrugi) {
+        //         this._sendToAll(`${this._usrNames[0]} je pobedio.`)
+        //     }
 
-        if (poeniDrugi > poeniPrvi) {
-            this._sendToAll(`Drugi je pobedio.`)
-        }
+        //     if (poeniDrugi > poeniPrvi) {
+        //         this._sendToAll(`${this._usrNames[1]} je pobedio.`)
+        //     }
 
-        if (poeniPrvi == poeniDrugi) {
-            this._sendToAll('Nerešeno')
-        }
+        //     if (poeniPrvi == poeniDrugi) {
+        //         this._sendToAll('Nerešeno')
+        //     }
+        // }, 2000)
+
+        let usrint = setInterval(() => {
+            if (this._usrNames[0] != null || this._usrNames[0] != null) {
+                if (poeniPrvi > poeniDrugi) {
+                    this._sendToAll(`${this._usrNames[0]} je pobedio.`)
+                }
+
+                if (poeniDrugi > poeniPrvi) {
+                    this._sendToAll(`${this._usrNames[1]} je pobedio.`)
+                }
+
+                if (poeniPrvi == poeniDrugi) {
+                    this._sendToAll('Nerešeno')
+                }
+                clearInterval(usrint)
+            }
+        }, 420);
+
+
     }
 
 

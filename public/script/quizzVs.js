@@ -26,14 +26,19 @@ let slovo = document.querySelector('#slovo')
 
 let info = document.querySelector('.info')
 
+let usr = document.querySelector('.usr')
+
+
 button.disabled = true
 slovo.style.display = 'none'
+usr.innerHTML = `Korisničko ime: <span id="usrn">${name}</span>`
 
-// if (satSek.innerHtml > 40) {
-//     button.disabled = true
-// } else {
-//     button.disabled = false
-// }
+let usrName = document.querySelector('#usrn')
+usrName.style.color = 'teal'
+
+usr.style.marginTop = '1rem'
+usr.style.fontWeight = 'bold'
+usr.style.letterSpacing = '1px'
 
 
 
@@ -117,6 +122,8 @@ const usrInputsSubmited = (e) => {
     let interval = setInterval(() => {
         if (tacno != 0) {
             sock.emit('turn', tacno)
+            sock.emit('username', name)
+
             clearInterval(interval)
         }
     }, 500)
@@ -158,7 +165,7 @@ const writeCountdown = () => {
 let gameStartsIn = () => {
     let timeleft = 1;
     let timer = setInterval(() => {
-        let counter = 6 - timeleft;
+        let counter = 4 - timeleft;
         timeleft += 1;
         info.innerHTML = `Igra počinje za ${counter} sekunde`
         // ukoliko dodje do nule klikni na dugme vezano za formu
@@ -175,8 +182,12 @@ let gameStartsIn = () => {
 
 const writeEvent = (text) => {
     const el = document.createElement('li')
-    el.innerHTML = text;
+    el.innerHTML = text
+
     parent.appendChild(el)
+
+    parent.scrollTop = parent.scrollHeight
+
 };
 
 const writeInfo = text => {
@@ -193,9 +204,16 @@ const writeSlovo = text => {
 const writeRezultat = (text) => {
     const el = document.createElement('div')
     el.classList.add('rez-kraj')
-    el.innerHTML = text;
+    el.innerHTML = `${text}`;
     chatBox.appendChild(el)
 };
+
+// const writeUsr = (text) => {
+//     const el = document.createElement('div')
+//     el.classList.add('rez-kraj')
+//     el.innerHTML = text;
+//     chatBox.appendChild(el)
+// };
 
 const writeInput = (text) => {
     const el = document.createElement('div')
@@ -225,7 +243,7 @@ const writeSelf = text => {
 // salje na server poruku iz chatInput-a pa resetuje input
 const onFormSubmited = (e) => {
     e.preventDefault()
-    const text = chatInput.value
+    const text = `${name}: ${chatInput.value}`
     chatInput.value = ''
     sock.emit('message', text)
 }
@@ -235,6 +253,8 @@ const onFormSubmited = (e) => {
 // salje poruku serveru
 
 const sock = io();
+
+
 
 sock.on('gms', gameStartsIn)
 sock.on('slovo', writeSlovo)
