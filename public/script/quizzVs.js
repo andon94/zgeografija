@@ -10,7 +10,7 @@ let inputKategorija = document.querySelector('.kat-input')
 let inputs = document.querySelectorAll('.input')
 
 let start = document.querySelector('.button')
-let button = document.querySelector('button')
+let button = document.querySelector('.button')
 
 let rezultat = document.querySelector('.rezultat')
 
@@ -18,6 +18,23 @@ let collection = db.collection('pojmovi');
 let name = localStorage.getItem("usernameLS");
 
 const parent = document.querySelector('#events')
+
+const psSat = document.querySelector('.ps-sat')
+const satSek = document.querySelector('.sat-sek')
+
+let slovo = document.querySelector('#slovo')
+
+let info = document.querySelector('.info')
+
+button.disabled = true
+slovo.style.display = 'none'
+
+// if (satSek.innerHtml > 40) {
+//     button.disabled = true
+// } else {
+//     button.disabled = false
+// }
+
 
 
 let formatPojam = pojam => {
@@ -44,10 +61,11 @@ const usrInputsSubmited = (e) => {
     e.preventDefault()
     let ukupno = []
     ipkForm.innerHTML = ''
+    // info.innerHTML = ''
 
     wait = document.createElement('div')
     wait.classList.add('wait')
-    wait.innerHTML = 'Sačekajte protivnika';
+    info.innerHTML = 'Sačekaj protivnika';
     ipkForm.appendChild(wait)
 
 
@@ -75,10 +93,12 @@ const usrInputsSubmited = (e) => {
     let upit = input => {
         let usrPojam = prvaRec(input)
         let usrKategorija = drugaRec(input)
+        let pocetnoSlovo = slovo.innerHTML
 
         collection
             .where('pojam', '==', usrPojam)
             .where('kategorija', '==', usrKategorija)
+            .where('pocetnoSlovo', '==', pocetnoSlovo)
             .get()
             .then(snapshot => {
                 if (snapshot.size == 1) {
@@ -103,13 +123,72 @@ const usrInputsSubmited = (e) => {
 
 }
 
+
+
+const writeCountdown = () => {
+
+    button.disabled = false
+    slovo.style.display = 'block'
+
+
+    let timeleft = 1;
+    let timer = setInterval(() => {
+        let counter = 45 - timeleft;
+        timeleft += 1;
+        satSek.innerHTML = counter
+        // ukoliko dodje do nule klikni na dugme vezano za formu
+        if (counter == 0) {
+            clearInterval(timer);
+            psSat.style.display = 'none'
+            button.click()
+        }
+    }, 1000);
+
+    button.addEventListener('click', () => {
+        // setTimeout(() => {
+        clearInterval(timer)
+        psSat.style.display = 'none'
+
+        // }, 600)
+    })
+
+
+}
+
+let gameStartsIn = () => {
+    let timeleft = 1;
+    let timer = setInterval(() => {
+        let counter = 6 - timeleft;
+        timeleft += 1;
+        info.innerHTML = `Igra počinje za ${counter} sekunde`
+        // ukoliko dodje do nule klikni na dugme vezano za formu
+        if (counter == 0) {
+            clearInterval(timer);
+            info.innerHTML = ''
+        }
+    }, 1000);
+}
+
+// countdown(false)
 // pise chat poruke i inpute iz forme u centralno polje
 // prima samo vrednost poruke
+
 const writeEvent = (text) => {
     const el = document.createElement('li')
     el.innerHTML = text;
     parent.appendChild(el)
 };
+
+const writeInfo = text => {
+    // const el = document.createElement('div')
+    // el.classList.add('info-el')
+    info.innerHTML = text;
+    // info.appendChild(el)
+}
+
+const writeSlovo = text => {
+    slovo.innerHTML = text;
+}
 
 const writeRezultat = (text) => {
     const el = document.createElement('div')
@@ -157,6 +236,10 @@ const onFormSubmited = (e) => {
 
 const sock = io();
 
+sock.on('gms', gameStartsIn)
+sock.on('slovo', writeSlovo)
+sock.on('info', writeInfo)
+sock.on('countdown', writeCountdown)
 sock.on('message', writeEvent)
 sock.on('form', writeInput)
 sock.on('self', writeSelf)
@@ -166,7 +249,9 @@ sock.on('rezultat', writeRezultat)
 // event listneri za forme
 // dva ideneticna slucaja
 chatForm.addEventListener('submit', onFormSubmited)
+
 ipkForm.addEventListener('submit', usrInputsSubmited)
+
 
 
 

@@ -2,7 +2,15 @@ class Game {
     constructor(p1, p2) {
         this._players = [p1, p2];
         this._turns = [null, null]
-        this._sendToPlayers('Igra je počela')
+
+
+        this._sendCountdownGame()
+
+
+        setTimeout(() => {
+            this._sendInfo('Igra je počela')
+            this._sendCountdown()
+        }, 7000)
 
         this._skupa = []
 
@@ -11,6 +19,26 @@ class Game {
                 this._onTurn(idx, turn)
             })
         })
+    }
+
+    _sendInfo(msg) {
+        this._players.forEach(player => {
+            player.emit('info', msg)
+        })
+    }
+
+    _sendCountdown() {
+        this._players.forEach(player => {
+            player.emit('countdown')
+        })
+
+    }
+
+    _sendCountdownGame() {
+        this._players.forEach(player => {
+            player.emit('gms')
+        })
+
     }
 
     _sendToPlayer(playerIndex, msg) {
@@ -44,7 +72,7 @@ class Game {
         const turns = this._turns;
 
         if (turns[0] && turns[1]) {
-            this._sendToPlayers('Igra je gotova.')
+            this._sendInfo('Igra je gotova.')
             this._getResults()
             this._turns = [null, null]
         }

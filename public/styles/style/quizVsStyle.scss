@@ -29,16 +29,24 @@ h1 a{
     grid-template-columns: 35% 30% 35%;
     ul{
         height: 10rem;
-        margin-bottom: 2rem;
+        margin-bottom: 0.5rem;
         overflow-y: scroll;
         li{
             list-style-type: none;
             padding: 0.2rem;
         }
     }
+
+    ul::-webkit-scrollbar {
+        display: none;
+      }
+
 }
 
-// .chat-form{
+
+
+// #chat, #chat-button{
+//     display: inline;
 // }
 
 /* igra protiv kompjutera */
@@ -49,6 +57,15 @@ h1 a{
     // margin: auto;
     padding-top: 3rem;
 }
+
+#events{
+
+
+    min-width: 280px;
+    // max-width: ;
+    display: block;
+}
+
 
 
 
@@ -87,6 +104,12 @@ h1 a{
     // color: #333333;
 }
 
+#chat{
+    width: auto;
+}
+
+
+
 .protivnik, .self, .rez-kraj, .wait{
     padding: 0.8rem;
     font-size: 1rem;
@@ -102,11 +125,30 @@ h1 a{
 }
 
 
+.info{
+    min-height: 8.5rem;
+
+    color: teal;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: auto;
+    text-align: center;
+}
+
+
+.chat-form{
+    white-space: nowrap;
+}
 
 
 
-button, .button{
-    margin: 3rem auto 0 auto;
+
+.button{
+    // margin: 3rem auto 0 auto;
+    // margin-top: 3rem;
+    // width: auto;
+    // min-width: fit-content;
     width: fit-content;
     border: none;
     padding: 1rem 2rem;
@@ -117,13 +159,72 @@ button, .button{
     border-radius: 3px;
     transition: all .2s ease-in-out;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-
-
 }
+
+#chat-button{
+    // width: fit-content;
+    // max-width: 29%;
+    
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: teal;
+    color: whitesmoke;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+
+.send{
+    height: 20px;
+}
+
+// #chat-button{
+//     width: 25%;
+//     margin: 0;
+//     padding: 1rem 1rem;
+// }
+
+// #chat{
+//     width: 65%;
+// }
 
 button:hover, .button:hover{
     background: rgb(1, 110, 110);
     transform: scale(1.1, 1.1);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 
+}
+
+
+.ps-sat{
+    margin: auto;
+    min-height: 21rem;
+    padding-top: 2rem;
+}
+
+.ps, .sat{
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    min-height: 9rem;
+}
+
+
+
+
+
+
+
+.ps div, .sat div{
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgba(4, 147, 114, 1);
+    min-height: 5rem;
+    padding: 1rem 0;
+    min-width: 6rem;
 }

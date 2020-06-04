@@ -13,6 +13,13 @@ const server = http.createServer(app);
 const io = socketio(server)
 
 
+
+let randomIndex = (x) => {
+    return Math.floor(Math.random() * x.length);
+}
+let slova = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "Lj", "M", "N", "Nj", "O", "P", "R", "S", "T", "U", "V", "Z", "Ž", "Č", "Ć", "Dž", "Đ", "Š"];
+let pS = slova[randomIndex(slova)]
+
 let waitingPlayer = null;
 io.on('connection', (sock) => {
 
@@ -20,13 +27,16 @@ io.on('connection', (sock) => {
         // ako waitingPlayer postoji i pojavi se drugi
         // zapocni igru
         new Game(waitingPlayer, sock)
+        io.emit('slovo', pS)
+
         waitingPlayer = null;
+
 
     } else {
         // ako waitingPlayer ne postoji, on postaje socket
         waitingPlayer = sock;
         // sock.emit salje poruku samo jednom igracu
-        waitingPlayer.emit('message', 'Sačekaj Protivnika')
+        waitingPlayer.emit('info', 'Sačekaj Protivnika')
     }
 
     // cim se primi poruka od igraca koji je konektovan
@@ -35,6 +45,7 @@ io.on('connection', (sock) => {
         io.emit('message', text)
     })
 })
+
 
 server.on('error', (err) => {
     console.error('server error', err)

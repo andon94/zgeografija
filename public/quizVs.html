@@ -51,21 +51,39 @@
                         <label>PREDMET</label>
                         <input type="text" id="Predmet" name="kategorija" autocomplete="off" class="input">
                     </div>
+
+                    <div>
+                        <div></div>
+                        <button class=" btnGrid button" type="submit">Pošalji</button>
+                    </div>
                 </div>
 
-                <button class=" btnGrid" type="submit">Pošalji</button>
+
             </form>
 
             <div class="chat-events">
+                <div class="info"></div>
                 <ul id="events"></ul>
                 <form action="" class="chat-form">
-                    <input type="text" id="chat" autocomplete="off">
-                    <button type="submit">Pošalji</button>
+                    <input type="text" id="chat" autocomplete="off" placeholder="Kaži nešto">
+                    <button type="submit" id="chat-button">Pošalji</button>
                 </form>
 
             </div>
 
-            <div class="rezultat"></div>
+            <div class="rezultat">
+                <div class="ps-sat">
+                    <div class="ps">
+                        <p>Slovo</p>
+                        <div id="slovo"></div>
+                    </div>
+                    <div class="sat">
+                        <p>Vreme</p>
+                        <div class="sat-sek">45</div>
+                        <!-- <p class="sekunda"></p> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
