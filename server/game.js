@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 class Game {
     constructor(p1, p2) {
         this._players = [p1, p2];

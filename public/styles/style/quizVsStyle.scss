@@ -4,6 +4,7 @@
     font-family: 'Raleway', sans-serif;    
 }
 
+
 h1{
     text-align: center;
     padding-top: 1rem;
@@ -24,9 +25,12 @@ h1 a{
     display: none;
 }
 
+
+
+
 .ipk{
     display: grid;
-    grid-template-columns: 35% 30% 35%;
+    grid-template-columns: 35% 35% 30%;
     ul{
         height: 10rem;
         margin-bottom: 2rem;
@@ -36,14 +40,6 @@ h1 a{
             padding: 0.2rem;
 
         }
-
-        // li:nth-child(odd) {
-        //     background: red;
-        //   }
-        
-        // li:nth-child(even) {
-        // background: blue;
-        // }
     }
 
     ul::-webkit-scrollbar {
@@ -62,36 +58,20 @@ h1 a{
 }
 
 
-
-// #chat, #chat-button{
-//     display: inline;
-// }
-
 /* igra protiv kompjutera */
 .ipk-form, .chat-events, .rezultat{
-    // display: grid;
-    // grid-template-columns: 40% 30% 30%;
     text-align: center;
-    // margin: auto;
     padding-top: 3rem;
 }
 
 #events{
-
-
     min-width: 280px;
-    // max-width: ;
     display: block;
-
     li{
         color: teal;
         letter-spacing: 1px;
     }
 }
-
-
-
-
 
 /* kategorija input */
 .kat-input div {
@@ -102,7 +82,6 @@ h1 a{
     font-size: 1.1rem;
     font-weight: bold;
     transition: all .2s ease-in-out;
-
 }
 
 .kat-input div label{
@@ -124,14 +103,11 @@ h1 a{
 
     border: none;
     background: #ebe9e9;
-    // color: #333333;
 }
 
 #chat{
     width: auto;
 }
-
-
 
 .protivnik, .self, .rez-kraj, .wait{
     padding: 0.8rem;
@@ -147,11 +123,10 @@ h1 a{
     margin: auto;
 }
 
-
 .info{
     min-height: 3rem;
 
-    color: teal;
+    color: rgb(236, 2, 2);
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -159,19 +134,11 @@ h1 a{
     text-align: center;
 }
 
-
 .chat-form{
     white-space: nowrap;
 }
 
-
-
-
 .button{
-    // margin: 3rem auto 0 auto;
-    // margin-top: 3rem;
-    // width: auto;
-    // min-width: fit-content;
     width: fit-content;
     border: none;
     padding: 1rem 2rem;
@@ -185,9 +152,6 @@ h1 a{
 }
 
 #chat-button{
-    // width: fit-content;
-    // max-width: 29%;
-    
     border: none;
     padding: 0.8rem;
     font-size: 1rem;
@@ -209,23 +173,12 @@ h1 a{
     height: 20px;
 }
 
-// #chat-button{
-//     width: 25%;
-//     margin: 0;
-//     padding: 1rem 1rem;
-// }
-
-// #chat{
-//     width: 65%;
-// }
-
 button:hover, .button:hover{
     background: rgb(1, 110, 110);
     transform: scale(1.1, 1.1);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 
 }
-
 
 .ps-sat{
     margin: auto;
@@ -241,12 +194,6 @@ button:hover, .button:hover{
     min-height: 9rem;
 }
 
-
-
-
-
-
-
 .ps div, .sat div{
     text-transform: uppercase;
     font-size: 4rem;
@@ -256,3 +203,68 @@ button:hover, .button:hover{
     padding: 1rem 0;
     min-width: 6rem;
 }
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+
+    h1{
+        padding-bottom: 0;
+    }
+
+
+    .ipk-form{
+        grid-area: kategorija;
+        div{
+            display: block;
+            padding-bottom: 0.3rem;
+            input{
+                width: 40%;
+                display: block;
+                margin: auto;
+            }
+            label{
+                display: block;
+                margin: auto;
+                padding-bottom: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+
+    .chat-events{
+        grid-area: slika;
+    }
+
+    .rezultat{
+        grid-area: ps;
+    }
+
+    .ipk{
+        grid-template-columns: 100%;
+        grid-template-areas: 
+        'slika' 'ps' 'kategorija';
+    }
+
+    .caption{
+        padding-bottom: 2rem;
+    }
+
+    // .ps-sat{
+    //     display: grid;
+    //     grid-template-columns: 50% 50%;
+    //     column-gap: 3rem;
+    //     .ps{
+    //         padding-bottom: 0;
+    //     }
+    //     text-align: center;
+    //     grid-template-columns: 100%;
+    //     padding-bottom: 1rem;
+    // }
+
+
+}
+
