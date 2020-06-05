@@ -9,6 +9,10 @@ body{
     overflow-x: hidden;
 }
 
+.container{
+    min-height: 100vh;
+}
+
 h1{
     text-align: center;
     padding-top: 1rem;
@@ -276,6 +280,15 @@ button:hover, .button:hover{
 
 }
 
+
+footer{
+    text-align: center;
+    background-color: aliceblue;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.7rem 0;
+    letter-spacing: 1px;
+} 
 
 
 @media only screen and (max-width: 800px) {

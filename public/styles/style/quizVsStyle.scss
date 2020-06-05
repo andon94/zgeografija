@@ -4,6 +4,10 @@
     font-family: 'Raleway', sans-serif;    
 }
 
+.container{
+    min-height: 100vh;
+}
+
 
 h1{
     text-align: center;
@@ -33,12 +37,19 @@ h1 a{
     grid-template-columns: 35% 35% 30%;
     ul{
         height: 10rem;
-        margin-bottom: 2rem;
+        max-width: 60%;
+        margin: auto auto 2rem auto;
+        // margin-bottom: 2rem;
+        border-top: solid 1px #777777;
+        border-bottom: solid 1px #777777;
+
         overflow-y: scroll;
         li{
             list-style-type: none;
             padding: 0.2rem;
-
+            text-align: left;
+            padding-left: 0.1rem;
+            word-break: break-all;
         }
     }
 
@@ -138,6 +149,25 @@ h1 a{
     white-space: nowrap;
 }
 
+.lista-grid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 50%;
+    margin: auto;
+}
+
+#usrnm{
+    padding-top: 0.5rem;
+    font-weight: bold;
+    padding-right: 0.2rem;
+}
+
+#usr-poeni{
+    color: #333333;
+    padding-top: 0.5rem;
+
+}
+
 .button{
     width: fit-content;
     border: none;
@@ -183,7 +213,7 @@ button:hover, .button:hover{
 .ps-sat{
     margin: auto;
     min-height: 21rem;
-    padding-top: 2rem;
+    // padding-top: 2rem;
 }
 
 .ps, .sat{
@@ -192,6 +222,15 @@ button:hover, .button:hover{
     text-align: center;
     letter-spacing: 1px;
     min-height: 9rem;
+}
+
+.naj{
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .ps div, .sat div{
@@ -205,10 +244,23 @@ button:hover, .button:hover{
 }
 
 
+footer{
+    text-align: center;
+    background-color: aliceblue;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.7rem 0;
+    letter-spacing: 1px;
+} 
+
 
 
 
 @media only screen and (max-width: 800px) {
+
+    .container{
+        min-height: 100%;
+    }
 
     h1{
         padding-bottom: 0;
@@ -246,24 +298,12 @@ button:hover, .button:hover{
     .ipk{
         grid-template-columns: 100%;
         grid-template-areas: 
-        'slika' 'ps' 'kategorija';
+        'slika' 'ps' 'kategorija' 'footer';
     }
 
     .caption{
         padding-bottom: 2rem;
     }
-
-    // .ps-sat{
-    //     display: grid;
-    //     grid-template-columns: 50% 50%;
-    //     column-gap: 3rem;
-    //     .ps{
-    //         padding-bottom: 0;
-    //     }
-    //     text-align: center;
-    //     grid-template-columns: 100%;
-    //     padding-bottom: 1rem;
-    // }
 
 
 }

@@ -11,7 +11,6 @@ let inputs = document.querySelectorAll('.input')
 
 let start = document.querySelector('.button')
 let button = document.querySelector('.button')
-
 let rezultat = document.querySelector('.rezultat')
 
 let collection = db.collection('pojmovi');
@@ -31,6 +30,9 @@ let usr = document.querySelector('.usr')
 let ni = document.querySelector('#ni')
 
 let lista = document.querySelector('.lista')
+let chatMess = document.querySelector('.chat-mess')
+
+let protiv = document.querySelector('.protiv')
 
 
 if (name != null && name != '') {
@@ -47,7 +49,11 @@ if (name != null && name != '') {
             // ako nema takvog dokumenta, dodaj ga u bazu
             snapshot.forEach(doc => {
                 console.log(doc.data().username)
-                lista.innerHTML += `<div class="list-el">${doc.data().username} ${doc.data().broj_poena}</div>`
+                listEl = document.createElement('div')
+                listEl.classList.add('lista-grid')
+                listEl.innerHTML = `<span id='usrnm'>${doc.data().username}</span> <span id='usr-poeni'>${doc.data().broj_poena}</span>`
+                lista.appendChild(listEl)
+                // lista.innerHTML += `<div><span class="usrnm">${doc.data().username}</span> ${doc.data().broj_poena}</div>`
             })
         })
 
@@ -185,7 +191,6 @@ if (name != null && name != '') {
         let interval = setInterval(() => {
             if (tacno != 0) {
                 sock.emit('turn', tacno)
-                sock.emit('username', name)
 
                 clearInterval(interval)
                 ni.classList.remove('none')
@@ -256,6 +261,7 @@ if (name != null && name != '') {
     const writeEvent = (text) => {
         const el = document.createElement('li')
         el.innerHTML = text
+        el.classList.add('chat-mess')
 
         parent.appendChild(el)
 
@@ -265,6 +271,12 @@ if (name != null && name != '') {
 
     const writeInfo = text => {
         info.innerHTML = text;
+    }
+
+    const writeUsr = text => {
+        protiv.innerHTML = text;
+        console.log(text)
+        console.log(protiv)
     }
 
     const writeSlovo = text => {
@@ -352,7 +364,7 @@ if (name != null && name != '') {
     // salje na server poruku iz chatInput-a pa resetuje input
     const onFormSubmited = (e) => {
         e.preventDefault()
-        const text = `${name}: ${chatInput.value}`
+        const text = `<span id='usrnm'>${name}:</span> <span id='usr-poeni'>${chatInput.value}</span>`
         chatInput.value = ''
         sock.emit('message', text)
     }
@@ -363,8 +375,9 @@ if (name != null && name != '') {
 
     const sock = io();
 
+    // sock.emit('username', name)
 
-
+    sock.on('protiv', writeUsr)
     sock.on('gms', gameStartsIn)
     sock.on('slovo', writeSlovo)
     sock.on('info', writeInfo)

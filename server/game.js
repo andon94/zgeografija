@@ -4,13 +4,19 @@ class Game {
         this._turns = [null, null]
         this._usrNames = [null, null]
 
+        // let usrint = setInterval(() => {
+        //     if (this._usrNames[1] != null || this._usrNames[1] != null) {
+
+        //         this._sendProtiv(1, `Protivnik0: ${this._usrNames[0]}`)
+        //         this._sendProtiv(0, `Protivnik1: ${this._usrNames[1]}`)
+        //     }
+        //     clearInterval(usrint)
+
+        // }, 420);
+
         this._sendCountdownGame()
 
 
-        setTimeout(() => {
-            this._sendInfo('Igra je počela')
-            this._sendCountdown()
-        }, 5000)
 
         this._skupa = []
 
@@ -20,18 +26,34 @@ class Game {
             })
 
             player.on('username', (name) => {
-                this._usrNames[idx] = name;
+                this._usrNames[idx] = name
             })
+
+
         })
+
+        setTimeout(() => {
+            this._sendInfo('Igra je počela')
+            this._sendCountdown()
+
+
+
+        }, 5000)
 
     }
 
+    // informacije o statusu igre
     _sendInfo(msg) {
         this._players.forEach(player => {
             player.emit('info', msg)
         })
     }
 
+    _sendProtiv(index, msg) {
+        this._players[index].emit('protiv', msg)
+    }
+
+    // glavni countdown
     _sendCountdown() {
         this._players.forEach(player => {
             player.emit('countdown')
@@ -39,6 +61,7 @@ class Game {
 
     }
 
+    // countdown za pocetak partije
     _sendCountdownGame() {
         this._players.forEach(player => {
             player.emit('gms')
@@ -46,36 +69,35 @@ class Game {
 
     }
 
+    // posalji samo jednom igracu rezultat po elementu
     _sendToPlayer(playerIndex, msg) {
         this._players[playerIndex].emit('form', msg)
     }
 
+    _writeSelf(playerIndex, msg) {
+        this._players[playerIndex].emit('self', msg)
+    }
+
+    // posalji igracima
     _sendToPlayers(msg) {
         this._players.forEach(player => {
             player.emit('message', msg)
         })
     }
 
+    // posalji svima rezultat
     _sendToAll(msg) {
         this._players.forEach(player => {
             player.emit('rezultat', msg)
         })
     }
 
-
-
-    _writeSelf(playerIndex, msg) {
-        this._players[playerIndex].emit('self', msg)
-    }
-
+    // ispisi nevidljivi rezultat za bazu
     _writeHelp(playerIndex, msg) {
         this._players[playerIndex].emit('help', msg)
     }
 
-    // _writeHelp(playerIndex, msg) {
-    //     this._players[playerIndex].emit('help', msg)
-    // }
-
+    // registruj potez i skupi ga u zajednicki niz 
     _onTurn(playerIndex, turn) {
 
         this._turns[playerIndex] = turn;
@@ -83,9 +105,10 @@ class Game {
         this._checkGameOver()
     }
 
+    // proveri kraj igre
     _checkGameOver() {
         const turns = this._turns;
-
+        // ako postoje oba poteza salji igra je gotova, ispisi rezultate i resetuj poteze
         if (turns[0] && turns[1]) {
             this._sendInfo('Igra je gotova')
             this._getResults()
@@ -93,6 +116,7 @@ class Game {
         }
     }
 
+    // ispisi rezultate po elementu
     _getResults() {
         const turns = this._turns;
         let prvi = []
@@ -171,20 +195,12 @@ class Game {
                     this._sendToAll(`${this._usrNames[0]} je pobedio`)
                     this._writeHelp(0, `${poeniPrvi}`)
                     this._writeHelp(1, `${poeniDrugi}`)
-
-
-                    // this._writeHelp(0, poeniPrvi)
-
                 }
 
                 if (poeniDrugi > poeniPrvi) {
                     this._sendToAll(`${this._usrNames[1]} je pobedio`)
                     this._writeHelp(1, `${poeniDrugi}`)
                     this._writeHelp(0, `${poeniPrvi}`)
-
-
-                    // this._writeHelp(0, poeniDrugi)
-
                 }
 
                 if (poeniPrvi == poeniDrugi) {
