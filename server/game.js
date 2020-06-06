@@ -4,17 +4,13 @@ class Game {
         this._turns = [null, null]
         this._usrNames = [null, null]
 
-        // let usrint = setInterval(() => {
-        //     if (this._usrNames[1] != null || this._usrNames[1] != null) {
-
-        //         this._sendProtiv(1, `Protivnik0: ${this._usrNames[0]}`)
-        //         this._sendProtiv(0, `Protivnik1: ${this._usrNames[1]}`)
-        //     }
-        //     clearInterval(usrint)
-
-        // }, 420);
-
         this._sendCountdownGame()
+
+        setTimeout(() => {
+            this._sendInfo('Igra je počela')
+            this._sendCountdown()
+        }, 5000)
+
 
 
 
@@ -32,13 +28,6 @@ class Game {
 
         })
 
-        setTimeout(() => {
-            this._sendInfo('Igra je počela')
-            this._sendCountdown()
-
-
-
-        }, 5000)
 
     }
 
@@ -58,6 +47,8 @@ class Game {
         this._players.forEach(player => {
             player.emit('countdown')
         })
+        this._sendProtiv(0, this._usrNames[1])
+        this._sendProtiv(1, this._usrNames[0])
 
     }
 
@@ -90,6 +81,10 @@ class Game {
         this._players.forEach(player => {
             player.emit('rezultat', msg)
         })
+    }
+
+    _sendRezToPlayer(playerIndex, msg) {
+        this._players[playerIndex].emit('rezultat', msg)
     }
 
     // ispisi nevidljivi rezultat za bazu
@@ -134,6 +129,11 @@ class Game {
 
         let poeniPrvi = 0
         let poeniDrugi = 0
+
+        this._sendToPlayer(1, `${this._usrNames[0]}`)
+        this._sendToPlayer(0, `${this._usrNames[1]}`)
+        this._writeSelf(0, `${this._usrNames[0]}`)
+        this._writeSelf(1, `${this._usrNames[1]}`)
 
         for (let i = 0; i < prvi.length; i++) {
 
@@ -184,9 +184,11 @@ class Game {
             }
 
         }
-        this._sendToAll(`${poeniPrvi} : ${poeniDrugi}`)
-        // this._sendToAll(poeniDrugi)
 
+
+
+        this._sendRezToPlayer(0, `${poeniPrvi} : ${poeniDrugi}`)
+        this._sendRezToPlayer(1, `${poeniDrugi} : ${poeniPrvi}`)
 
 
         let usrint = setInterval(() => {

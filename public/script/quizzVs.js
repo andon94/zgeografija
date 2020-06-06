@@ -1,10 +1,12 @@
-
 let ipk = document.querySelector('.ipk')
 let ipkForm = document.querySelector('.ipk-form')
 
 let chatBox = document.querySelector('.chat-events')
 let chatForm = document.querySelector('.chat-form')
 let chatInput = document.querySelector('#chat')
+const parent = document.querySelector('#events')
+let chatMess = document.querySelector('.chat-mess')
+
 
 let inputKategorija = document.querySelector('.kat-input')
 let inputs = document.querySelectorAll('.input')
@@ -17,28 +19,27 @@ let collection = db.collection('pojmovi');
 let colRez = db.collection('rezultati')
 let name = localStorage.getItem("usernameLS");
 
-const parent = document.querySelector('#events')
 
 const psSat = document.querySelector('.ps-sat')
 const satSek = document.querySelector('.sat-sek')
-
 let slovo = document.querySelector('#slovo')
+
 
 let info = document.querySelector('.info')
 
 let usr = document.querySelector('.usr')
+let protiv = document.querySelector('.protiv')
+
 let ni = document.querySelector('#ni')
 
 let lista = document.querySelector('.lista')
-let chatMess = document.querySelector('.chat-mess')
 
-let protiv = document.querySelector('.protiv')
 
+inputs.forEach(input => {
+    input.setAttribute('disabled', 'true')
+})
 
 if (name != null && name != '') {
-
-
-
 
     colRez
         .orderBy('broj_poena', 'desc')
@@ -53,25 +54,18 @@ if (name != null && name != '') {
                 listEl.classList.add('lista-grid')
                 listEl.innerHTML = `<span id='usrnm'>${doc.data().username}</span> <span id='usr-poeni'>${doc.data().broj_poena}</span>`
                 lista.appendChild(listEl)
-                // lista.innerHTML += `<div><span class="usrnm">${doc.data().username}</span> ${doc.data().broj_poena}</div>`
             })
         })
-
-
-
-
 
 
     class Usr {
 
         constructor(usr) {
             this._username = usr;
-            // this._broj_poena = brP
             this.rezultati = db.collection('rezultati')
         }
 
         async dodajPojam(usr, brP) {
-
 
             let date = new Date();
             let brIgara = 0
@@ -95,6 +89,7 @@ if (name != null && name != '') {
 
     button.disabled = true
     slovo.style.display = 'none'
+
     usr.innerHTML = `Korisničko ime: <span id="usrn">${name}</span>`
 
     let usrName = document.querySelector('#usrn')
@@ -103,6 +98,8 @@ if (name != null && name != '') {
     usr.style.marginTop = '1rem'
     usr.style.fontWeight = 'bold'
     usr.style.letterSpacing = '1px'
+
+
 
     ni.addEventListener('click', () => {
         window.location.reload();
@@ -128,21 +125,17 @@ if (name != null && name != '') {
         return n === -1 ? string : string.substr(0, n)
     }
 
-
     let wait = null
 
     const usrInputsSubmited = (e) => {
         e.preventDefault()
         let ukupno = []
         ipkForm.innerHTML = ''
-        // info.innerHTML = ''
 
         wait = document.createElement('div')
         wait.classList.add('wait')
         info.innerHTML = 'Sačekaj protivnika';
         ipkForm.appendChild(wait)
-
-
 
         inputs.forEach(input => {
             ukupno.push(input.value)
@@ -187,30 +180,25 @@ if (name != null && name != '') {
             upit(input)
         })
 
-        // console.log(tacno)
         let interval = setInterval(() => {
             if (tacno != 0) {
                 sock.emit('turn', tacno)
-
+                // sock.emit('username', name)
                 clearInterval(interval)
                 ni.classList.remove('none')
-
-
-
-
-
             }
         }, 500)
-
     }
-
 
 
     const writeCountdown = () => {
 
+        inputs.forEach(input => {
+            input.removeAttribute('disabled')
+        })
+
         button.disabled = false
         slovo.style.display = 'block'
-
 
         let timeleft = 1;
         let timer = setInterval(() => {
@@ -223,24 +211,20 @@ if (name != null && name != '') {
                 psSat.style.display = 'none'
                 button.click()
             }
-
             if (counter <= 10) {
                 satSek.style.color = 'rgb(236, 2, 2)'
             }
         }, 1000);
 
         button.addEventListener('click', () => {
-            // setTimeout(() => {
             clearInterval(timer)
             psSat.style.display = 'none'
-
-            // }, 600)
         })
-
 
     }
 
     let gameStartsIn = () => {
+
         let timeleft = 1;
         let timer = setInterval(() => {
             let counter = 4 - timeleft;
@@ -252,6 +236,8 @@ if (name != null && name != '') {
                 info.innerHTML = ''
             }
         }, 1000);
+        sock.emit('username', name)
+
     }
 
     // countdown(false)
@@ -266,17 +252,20 @@ if (name != null && name != '') {
         parent.appendChild(el)
 
         parent.scrollTop = parent.scrollHeight
-
     };
 
     const writeInfo = text => {
-        info.innerHTML = text;
+        info.innerHTML = `<div id="spusti-me">${text}</div>`;
     }
 
     const writeUsr = text => {
-        protiv.innerHTML = text;
-        console.log(text)
-        console.log(protiv)
+        protiv.innerHTML = `Protivnik: <span id='pr'>${text}</span>`;
+        let pr = document.querySelector('#pr')
+        pr.style.color = 'teal'
+
+        protiv.style.marginTop = '1rem'
+        protiv.style.fontWeight = 'bold'
+        protiv.style.letterSpacing = '1px'
     }
 
     const writeSlovo = text => {
@@ -287,7 +276,8 @@ if (name != null && name != '') {
         const el = document.createElement('div')
         el.classList.add('rez-kraj')
         el.innerHTML = `${text}`;
-        chatBox.appendChild(el)
+        el.style.paddingTop = '2rem'
+        info.appendChild(el)
     };
 
     const writeInput = (text) => {
@@ -323,14 +313,12 @@ if (name != null && name != '') {
         ipkForm.appendChild(el)
 
 
+        // dodaj partiju u bazu
         let player0 = new Usr(name)
-
         player0.rezultati
             .where('username', '==', name)
             .get()
             .then(snapshot => {
-                console.log(snapshot.docs.length)
-                // ako nema takvog dokumenta, dodaj ga u bazu
                 if (snapshot.docs.length == 0) {
                     let br = parseInt(text)
                     let brPn = br
@@ -338,24 +326,18 @@ if (name != null && name != '') {
 
                     player0.dodajPojam(name, brPn, brPr)
                         .then(() => {
-                            console.log("Pojam uspešno dodat")
+                            console.log("Partija dodata")
                         })
                         .catch(() => {
-                            console.log("pojam nije dodat")
+                            console.log("Partija nije dodata")
                         })
                 } else {
-                    let date = new Date()
 
+                    let date = new Date()
                     snapshot.forEach(doc => {
-                        // if (text == 0) {
-                        //     db.collection("rezultati").doc(doc.id).update({ broj_igara: firebase.firestore.FieldValue.increment(1), datum: firebase.firestore.Timestamp.fromDate(date) });
-                        //     console.log("Pojam apdejtovan")
-                        // } else {
                         let br = parseInt(text)
                         db.collection("rezultati").doc(doc.id).update({ broj_poena: firebase.firestore.FieldValue.increment(br), broj_igara: firebase.firestore.FieldValue.increment(1), datum: firebase.firestore.Timestamp.fromDate(date) });
-                        console.log("Pojam apdejtovan")
-                        // }
-
+                        console.log("Partija apdejtovan")
                     });
                 }
             })
@@ -364,7 +346,16 @@ if (name != null && name != '') {
     // salje na server poruku iz chatInput-a pa resetuje input
     const onFormSubmited = (e) => {
         e.preventDefault()
-        const text = `<span id='usrnm'>${name}:</span> <span id='usr-poeni'>${chatInput.value}</span>`
+
+        // let boja = document.querySelectorAll('.test')
+        // boja.forEach(b => {
+        //     if (b.innerHTML != name) {
+        //         b.style.color = 'pink'
+        //     }
+        // })
+
+        const text = `<span class='test' id='usrnm'>${name}</span> <span id='usr-poeni'>${chatInput.value}</span>`
+
         chatInput.value = ''
         sock.emit('message', text)
     }
@@ -375,7 +366,7 @@ if (name != null && name != '') {
 
     const sock = io();
 
-    // sock.emit('username', name)
+    sock.emit('username', name)
 
     sock.on('protiv', writeUsr)
     sock.on('gms', gameStartsIn)
@@ -387,12 +378,10 @@ if (name != null && name != '') {
     sock.on('self', writeSelf)
     sock.on('help', writeHelp)
     sock.on('rezultat', writeRezultat)
-    // sock.on('help', writeHelp)
 
     // event listneri za forme
     // dva ideneticna slucaja
     chatForm.addEventListener('submit', onFormSubmited)
-
     ipkForm.addEventListener('submit', usrInputsSubmited)
 
 
@@ -403,7 +392,6 @@ if (name != null && name != '') {
 
 
 
-// player0.dodajPojam(name, 20)
 
 
 
