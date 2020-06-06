@@ -52,7 +52,7 @@ if (name != null && name != '') {
                 console.log(doc.data().username)
                 listEl = document.createElement('div')
                 listEl.classList.add('lista-grid')
-                listEl.innerHTML = `<span id='usrnm'>${doc.data().username}</span> <span id='usr-poeni'>${doc.data().broj_poena}</span>`
+                listEl.innerHTML = `<span class='usrnm'>${doc.data().username}</span> <span class='usr-poeni'>${doc.data().broj_poena}</span>`
                 lista.appendChild(listEl)
             })
         })
@@ -240,6 +240,19 @@ if (name != null && name != '') {
 
     }
 
+
+
+    // privremeno resenje
+    // setInterval(() => {
+    //     let usrnmSvi = document.querySelectorAll('.test')
+    //     usrnmSvi.forEach(usr => {
+    //         // console.log(usr.innerHTML)
+    //         if (name != usr.innerHTML) {
+    //             usr.style.color = 'rgb(236, 2, 2)'
+    //         }
+    //     })
+    // }, 10);
+
     // countdown(false)
     // pise chat poruke i inpute iz forme u centralno polje
     // prima samo vrednost poruke
@@ -247,10 +260,9 @@ if (name != null && name != '') {
     const writeEvent = (text) => {
         const el = document.createElement('li')
         el.innerHTML = text
-        el.classList.add('chat-mess')
+        // console.log(usrn.innerHTML)
 
         parent.appendChild(el)
-
         parent.scrollTop = parent.scrollHeight
     };
 
@@ -346,15 +358,7 @@ if (name != null && name != '') {
     // salje na server poruku iz chatInput-a pa resetuje input
     const onFormSubmited = (e) => {
         e.preventDefault()
-
-        // let boja = document.querySelectorAll('.test')
-        // boja.forEach(b => {
-        //     if (b.innerHTML != name) {
-        //         b.style.color = 'pink'
-        //     }
-        // })
-
-        const text = `<span class='test' id='usrnm'>${name}</span> <span id='usr-poeni'>${chatInput.value}</span>`
+        const text = `<span class='test' class='usrnm';">${name}</span> <span class='usr-poeni'>${chatInput.value}</span>`
 
         chatInput.value = ''
         sock.emit('message', text)

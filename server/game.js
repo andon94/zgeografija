@@ -24,11 +24,7 @@ class Game {
             player.on('username', (name) => {
                 this._usrNames[idx] = name
             })
-
-
         })
-
-
     }
 
     // informacije o statusu igre
@@ -70,11 +66,12 @@ class Game {
     }
 
     // posalji igracima
-    _sendToPlayers(msg) {
-        this._players.forEach(player => {
-            player.emit('message', msg)
-        })
-    }
+    // _sendToPlayers(msg) {
+    //     // this._players.forEach(player => {
+    //     //     player.emit('message', msg)
+    //     // })
+    //     this._players[0].emit('message', msg)
+    // }
 
     // posalji svima rezultat
     _sendToAll(msg) {

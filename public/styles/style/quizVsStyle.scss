@@ -50,6 +50,7 @@ h1 a{
             text-align: left;
             padding-left: 0.1rem;
             word-break: break-all;
+            
         }
     }
 
@@ -82,9 +83,19 @@ h1 a{
     li{
         color: teal;
         letter-spacing: 1px;
+        font-weight: bold;
     }
 }
 
+#pravila{
+    width: 70%;
+    // text-align: center;
+    margin: auto;
+    color: #777777 !important;
+    font-size: 0.8rem;
+    text-align: center !important;
+    word-break: keep-all !important;
+}
 /* kategorija input */
 .kat-input div {
     padding: 0.3rem 0;
@@ -117,8 +128,10 @@ h1 a{
     background: #ebe9e9;
 }
 
+
 #chat{
     width: auto;
+    text-transform: none !important;
 }
 
 .protivnik, .self, .rez-kraj, .wait{
@@ -155,6 +168,10 @@ h1 a{
 
 }
 
+.chat-mess{
+    color: pink !important;
+}
+
 .chat-form{
     white-space: nowrap;
 }
@@ -166,13 +183,8 @@ h1 a{
     margin: auto;
 }
 
-#usrnm{
-    padding-top: 0.5rem;
-    font-weight: bold;
-    padding-right: 0.2rem;
-}
 
-#usr-poeni{
+.usr-poeni{
     color: #333333;
     padding-top: 0.5rem;
 
