@@ -41,21 +41,21 @@ inputs.forEach(input => {
 
 if (name != null && name != '') {
 
-    colRez
-        .orderBy('broj_poena', 'desc')
-        .limit(3)
-        .get()
-        .then(snapshot => {
-            console.log(snapshot.docs.length)
-            // ako nema takvog dokumenta, dodaj ga u bazu
-            snapshot.forEach(doc => {
-                console.log(doc.data().username)
-                listEl = document.createElement('div')
-                listEl.classList.add('lista-grid')
-                listEl.innerHTML = `<span class='usrnm'>${doc.data().username}</span> <span class='usr-poeni'>${doc.data().broj_poena}</span>`
-                lista.appendChild(listEl)
-            })
-        })
+    // colRez
+    //     .orderBy('broj_poena', 'desc')
+    //     .limit(3)
+    //     .get()
+    //     .then(snapshot => {
+    //         console.log(snapshot.docs.length)
+    //         // ako nema takvog dokumenta, dodaj ga u bazu
+    //         snapshot.forEach(doc => {
+    //             console.log(doc.data().username)
+    //             listEl = document.createElement('div')
+    //             listEl.classList.add('lista-grid')
+    //             listEl.innerHTML = `<span class='usrnm'>${doc.data().username}</span> <span class='usr-poeni'>${doc.data().broj_poena}</span>`
+    //             lista.appendChild(listEl)
+    //         })
+    //     })
 
 
     class Usr {
