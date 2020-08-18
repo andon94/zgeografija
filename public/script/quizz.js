@@ -223,7 +223,7 @@ let interval = setInterval(() => {
                         botOdgovor = 'asdf'
                     }
                     let pp = randomBotIndex(kategorije)
-                    console.log(pp)
+                    // console.log(pp)
                     if (pp >= 6) {
                         botOdgovor = 'asdf'
                     }
@@ -249,7 +249,7 @@ let interval = setInterval(() => {
                                         input.value += ` +5`
                                     }
                                 })
-                                console.log(1)
+                                // console.log(1)
                             } else if (tacno.includes(usrOdgovor) && usrOdgovor != botOdgovor && nizPojmova.includes(botOdgovor)) {
 
                                 usrRezultat = usrRezultat + 10;
@@ -261,7 +261,7 @@ let interval = setInterval(() => {
                                         input.value += ` +10`
                                     }
                                 })
-                                console.log(2)
+                                // console.log(2)
                             } else if (tacno.includes(usrOdgovor) && nizPojmova.includes(botOdgovor) == false) {
 
                                 usrRezultat = usrRezultat + 15;
@@ -272,7 +272,7 @@ let interval = setInterval(() => {
                                         input.value += ` +15`
                                     }
                                 })
-                                console.log(3)
+                                // console.log(3)
                             } else if (tacno.includes(usrOdgovor) == false && nizPojmova.includes(botOdgovor)) {
 
                                 botRezultat = botRezultat + 15;
@@ -284,7 +284,7 @@ let interval = setInterval(() => {
                                         input.style.color = 'red'
                                     }
                                 })
-                                console.log(4)
+                                // console.log(4)
                             } else if (tacno.includes(usrOdgovor) == false && nizPojmova.includes(botOdgovor) == false) {
 
                                 slovoSat.innerHTML += `<p class='crveno'>nema pojma</p><br>`
