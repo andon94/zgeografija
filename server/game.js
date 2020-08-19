@@ -25,6 +25,7 @@ class Game {
                 this._usrNames[idx] = name
             })
         })
+
     }
 
     // informacije o statusu igre
@@ -191,13 +192,13 @@ class Game {
         let usrint = setInterval(() => {
             if (this._usrNames[0] != null || this._usrNames[0] != null) {
                 if (poeniPrvi > poeniDrugi) {
-                    this._sendToAll(`${this._usrNames[0]} je pobedio`)
+                    this._sendToAll(`${this._usrNames[0]} je pobednik`)
                     this._writeHelp(0, `${poeniPrvi}`)
                     this._writeHelp(1, `${poeniDrugi}`)
                 }
 
                 if (poeniDrugi > poeniPrvi) {
-                    this._sendToAll(`${this._usrNames[1]} je pobedio`)
+                    this._sendToAll(`${this._usrNames[1]} je pobednik`)
                     this._writeHelp(1, `${poeniDrugi}`)
                     this._writeHelp(0, `${poeniPrvi}`)
                 }

@@ -168,7 +168,7 @@ if (name != null && name != '') {
                 .where('pocetnoSlovo', '==', pocetnoSlovo)
                 .get()
                 .then(snapshot => {
-                    if (snapshot.size == 1) {
+                    if (snapshot.size >= 1) {
                         tacno.push(usrPojam)
                     } else {
                         tacno.push('')
