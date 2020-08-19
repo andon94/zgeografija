@@ -364,6 +364,18 @@ if (name != null && name != '') {
         sock.emit('message', text)
     }
 
+    // const writeDisconnect = () => {
+    //     console.log('user disconnectovan')
+    // }
+
+    const clickButton = () => {
+
+        setTimeout(() => {
+            // button.click()
+            location.reload()
+        }, 3000)
+    }
+
 
     // konektuje se na server
     // salje poruku serveru
@@ -372,6 +384,7 @@ if (name != null && name != '') {
 
     sock.emit('username', name)
 
+    // sock.on('disconnect', writeEvent)
     sock.on('protiv', writeUsr)
     sock.on('gms', gameStartsIn)
     sock.on('slovo', writeSlovo)
@@ -382,6 +395,7 @@ if (name != null && name != '') {
     sock.on('self', writeSelf)
     sock.on('help', writeHelp)
     sock.on('rezultat', writeRezultat)
+    sock.on('restart', clickButton)
 
     // event listneri za forme
     // dva ideneticna slucaja

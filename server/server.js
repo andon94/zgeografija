@@ -46,6 +46,14 @@ io.on('connection', (sock) => {
         io.emit('message', text)
     })
 
+    sock.on('disconnect', () => {
+        // console.log('user disconnnected')
+        io.emit('info', 'Protivnik je diskonektovan')
+        // io.emit('message', 'Restartujte igru.')
+        io.emit('restart')
+
+    })
+
 })
 
 
