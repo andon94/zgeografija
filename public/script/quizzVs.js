@@ -373,7 +373,7 @@ if (name != null && name != '') {
         setTimeout(() => {
             // button.click()
             location.reload()
-        }, 1000)
+        }, 500)
     }
 
 

@@ -78,6 +78,8 @@ desc.addEventListener('click', () => {
 
 // baza 
 let collection = db.collection('pojmovi');
+// let predlozi = db.collection('pojmovi');
+
 
 // top lista
 
@@ -144,6 +146,7 @@ class Pojam {
         this.kategorija = ka;
         this.pojam = p;
         this.pojmovi = db.collection('pojmovi')
+        this.predlozi = db.collection('predlozi')
     }
 
     async dodajPojam(kategorija, pojam) {
@@ -167,7 +170,7 @@ class Pojam {
             vreme: firebase.firestore.Timestamp.fromDate(date)
         }
 
-        let response = await this.pojmovi.add(element);
+        let response = await this.predlozi.add(element);
         return response;
     }
 
