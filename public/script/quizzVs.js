@@ -370,10 +370,10 @@ if (name != null && name != '') {
 
     const clickButton = () => {
 
-        setTimeout(() => {
-            // button.click()
-            location.reload()
-        }, 500)
+        // setTimeout(() => {
+        // button.click()
+        location.reload()
+        // }, 500)
     }
 
 
