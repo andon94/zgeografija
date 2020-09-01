@@ -364,16 +364,10 @@ if (name != null && name != '') {
         sock.emit('message', text)
     }
 
-    // const writeDisconnect = () => {
-    //     console.log('user disconnectovan')
-    // }
-
     const clickButton = () => {
 
-        // setTimeout(() => {
-        // button.click()
         location.reload()
-        // }, 500)
+
     }
 
 
@@ -383,6 +377,7 @@ if (name != null && name != '') {
     const sock = io();
 
     sock.emit('username', name)
+
 
     // sock.on('disconnect', writeEvent)
     sock.on('protiv', writeUsr)

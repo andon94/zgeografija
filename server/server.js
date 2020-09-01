@@ -20,18 +20,22 @@ let randomIndex = (x) => {
 let slova = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "Lj", "M", "N", "Nj", "O", "P", "R", "S", "T", "U", "V", "Z", "Ž", "Č", "Ć", "Dž", "Đ", "Š"];
 
 let waitingPlayer = null;
+let username1;
+
+
+
 io.on('connection', (sock) => {
 
     if (waitingPlayer) {
         // ako waitingPlayer postoji i pojavi se drugi
         // zapocni igru
+
         new Game(waitingPlayer, sock)
         let pS = slova[randomIndex(slova)]
 
         io.emit('slovo', pS)
 
         waitingPlayer = null;
-
 
     } else {
         // ako waitingPlayer ne postoji, on postaje socket
@@ -44,15 +48,6 @@ io.on('connection', (sock) => {
     sock.on('message', (text) => {
         // prosledjuje se svima koji su konektovani
         io.emit('message', text)
-    })
-
-    sock.on('disconnect', () => {
-        // console.log('user disconnnected')
-        io.emit('info', 'Protivnik je diskonektovan')
-        waitingPlayer = null;
-        // io.emit('message', 'Restartujte igru.')
-        io.emit('restart')
-
     })
 
 })

@@ -13,7 +13,6 @@ class Game {
 
 
 
-
         this._skupa = []
 
         this._players.forEach((player, idx) => {
@@ -25,6 +24,19 @@ class Game {
                 this._usrNames[idx] = name
             })
         })
+
+        this._players.forEach(player => {
+            player.on('disconnect', () => {
+                this._players.forEach(sock => {
+                    if (player != sock) {
+                        sock.emit('restart')
+                    }
+                });
+            });
+        });
+
+
+
 
     }
 
