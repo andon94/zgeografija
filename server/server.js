@@ -22,26 +22,50 @@ let slova = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "Lj", "
 let waitingPlayer = null;
 let username1;
 
-
-
 io.on('connection', (sock) => {
+
+
 
     if (waitingPlayer) {
         // ako waitingPlayer postoji i pojavi se drugi
         // zapocni igru
 
-        new Game(waitingPlayer, sock)
-        let pS = slova[randomIndex(slova)]
+        // waitingPlayer.on('username', username => {
+        //     console.log(username)
+        // })
 
-        io.emit('slovo', pS)
+        sock.on('username', username2 => {
+            if (username1 === username2 || username1 === undefined) {
+                username1 = username2
+                waitingPlayer = sock
+                waitingPlayer.emit('info', 'Sačekaj Protivnika')
+                console.log('username undefined')
 
-        waitingPlayer = null;
+                sock.on('disconnect', () => {
+                    username1 = undefined
+                })
+
+            } else {
+                new Game(waitingPlayer, sock)
+                console.log('gejm')
+                let pS = slova[randomIndex(slova)]
+                io.emit('slovo', pS)
+
+                waitingPlayer = null;
+                username1 = undefined;
+            }
+        })
+
 
     } else {
         // ako waitingPlayer ne postoji, on postaje socket
         waitingPlayer = sock;
+        waitingPlayer.on('username', username => {
+            username1 = username;
+        });
         // sock.emit salje poruku samo jednom igracu
         waitingPlayer.emit('info', 'Sačekaj Protivnika')
+        console.log('sacekaj protivnika')
     }
 
     // cim se primi poruka od igraca koji je konektovan

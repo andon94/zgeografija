@@ -20,7 +20,7 @@ class Game {
                 this._onTurn(idx, turn)
             })
 
-            player.on('username', (name) => {
+            player.on('username3', (name) => {
                 this._usrNames[idx] = name
             })
         })

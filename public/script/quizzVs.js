@@ -236,7 +236,8 @@ if (name != null && name != '') {
                 info.innerHTML = ''
             }
         }, 1000);
-        sock.emit('username', name)
+        // sock.emit('username', name)
+        sock.emit('username3', name)
 
     }
 
